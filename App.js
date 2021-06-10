@@ -25,51 +25,72 @@ if(firebase.apps.length === 0) {
 
 import LandingScreen from "./components/landing";
 import RegisterScreen from "./components/register";
+import LoginScreen from "./components/login";
 
 const Stack = createStackNavigator();
-// start here
-export default class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			loaded: false,
-		};
-	}
-	componentDidMount() {
-		firebase.auth().onAuthStateChanged((user) => {
-			if (!user) {
-				this.setState({
-					loggedIn: false,
-					loaded: true,
-				});
-			} else {
-				this.setState({
-					loggedIn: true,
-					loaded: true,
-				});
-			}
-		});
-	}
-	render() {
-		const { loggedIn, loaded } = this.state;
-		if (!loaded) {
-			return (
-				<View>
-					<Text style={{ flex: 1, justifyContent: "center" }}>Loading</Text>
-				</View>
-			);
-		}
-		return (
-			<NavigationContainer>
-				<Stack.Navigator initialRouteName="Landing">
-					<Stack.Screen
-						name="Landing"
-						component={LandingScreen}
-						options={{ headerShown: false }}
-					/>
-					<Stack.Screen name="Register" component={RegisterScreen} />
-				</Stack.Navigator>
-			</NavigationContainer>
-		);
-	}
+
+const App = () => {
+
+
+	return (					
+		<NavigationContainer>
+					<Stack.Navigator initialRouteName="Landing">
+						<Stack.Screen
+							name="Landing"
+							component={LandingScreen}
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen name="Register" component={RegisterScreen} />
+						<Stack.Screen name="Login" component={LoginScreen} />
+					</Stack.Navigator>
+				</NavigationContainer>
+		)
 }
+export default App;
+// start here
+// export default class App extends Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.state = {
+// 			loaded: false,
+// 		};
+// 	}
+// 	componentDidMount() {
+// 		firebase.auth().onAuthStateChanged((user) => {
+// 			if (!user) {
+// 				this.setState({
+// 					loggedIn: false,
+// 					loaded: true,
+// 				});
+// 			} else {
+// 				this.setState({
+// 					loggedIn: true,
+// 					loaded: true,
+// 				});
+// 			}
+// 		});
+// 	}
+// 	render() {
+// 		const { loggedIn, loaded } = this.state;
+// 		if (!loaded) {
+// 			return (
+// 				<View>
+// 					<Text style={{ flex: 1, justifyContent: "center" }}>Loading</Text>
+// 				</View>
+// 			);
+// 		}
+// 		return (
+// 			<NavigationContainer>
+// 				<Stack.Navigator initialRouteName="Landing">
+// 					<Stack.Screen
+// 						name="Landing"
+// 						component={LandingScreen}
+// 						options={{ headerShown: false }}
+// 					/>
+// 					<Stack.Screen name="Register" component={RegisterScreen} />
+// 				</Stack.Navigator>
+// 			</NavigationContainer>
+// 		);
+// 	}
+// }
+//ends here
