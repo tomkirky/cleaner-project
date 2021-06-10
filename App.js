@@ -18,13 +18,16 @@ const firebaseConfig = {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-firebase.initializeApp(firebaseConfig);
+
+if(firebase.apps.length === 0) {
+	firebase.initializeApp(firebaseConfig);
+}
 
 import LandingScreen from "./components/landing";
 import RegisterScreen from "./components/register";
 
 const Stack = createStackNavigator();
-
+// start here
 export default class App extends Component {
 	constructor(props) {
 		super(props);
