@@ -7,45 +7,44 @@ import { View, Text } from "react-native";
 import firebase from "firebase/app";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyCypVoinAdRkCENQfn2AqR6ebT-11sovAs",
-	authDomain: "cleaner-3207e.firebaseapp.com",
-	projectId: "cleaner-3207e",
-	storageBucket: "cleaner-3207e.appspot.com",
-	messagingSenderId: "98775205470",
-	appId: "1:98775205470:web:0d767f25351083f90556cf",
-	measurementId: "G-MC62M5YJD9",
+  apiKey: "AIzaSyCypVoinAdRkCENQfn2AqR6ebT-11sovAs",
+  authDomain: "cleaner-3207e.firebaseapp.com",
+  projectId: "cleaner-3207e",
+  storageBucket: "cleaner-3207e.appspot.com",
+  messagingSenderId: "98775205470",
+  appId: "1:98775205470:web:0d767f25351083f90556cf",
+  measurementId: "G-MC62M5YJD9",
 };
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-
-if(firebase.apps.length === 0) {
-	firebase.initializeApp(firebaseConfig);
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
 }
 
 import LandingScreen from "./components/landing";
 import RegisterScreen from "./components/register";
 import LoginScreen from "./components/login";
+import HomeScreen from "./components/home";
 
 const Stack = createStackNavigator();
 
 const App = () => {
-
-
-	return (					
-		<NavigationContainer>
-					<Stack.Navigator initialRouteName="Landing">
-						<Stack.Screen
-							name="Landing"
-							component={LandingScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen name="Register" component={RegisterScreen} />
-						<Stack.Screen name="Login" component={LoginScreen} />
-					</Stack.Navigator>
-				</NavigationContainer>
-		)
-}
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Landing">
+        <Stack.Screen
+          name="Landing"
+          component={LandingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 export default App;
 // start here
 // export default class App extends Component {
