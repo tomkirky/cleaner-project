@@ -18,18 +18,27 @@ const firebaseConfig = {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-if (firebase.apps.length === 0) {
-  firebase.initializeApp(firebaseConfig);
-}
-
 import LandingScreen from "./components/landing";
 import RegisterScreen from "./components/register";
 import LoginScreen from "./components/login";
 import HomeScreen from "./components/home";
-
+// if (firebase.apps.length === 0) {
+//   firebase.initializeApp(firebaseConfig);
+// }
+const db = firebase.initializeApp(firebaseConfig).firestore(); // <--- changed from if stetement above
 const Stack = createStackNavigator();
 
 const App = () => {
+  var citiesRef = db.collection("cities");
+
+  citiesRef.doc("SF").set({
+    name: "San Francisco",
+    state: "CA",
+    country: "USA",
+    capital: false,
+    population: 860000,
+    regions: ["west_coast", "norcal"],
+  });
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Landing">
