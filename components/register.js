@@ -37,11 +37,11 @@ const Register = ({ navigation }) => {
 				if (error.code === "auth/invalid-email") {
 					console.log("That email address is invalid!");
 				}
-				console.log(error);
+				console.log(error); // NEED TO DISPLAY ERROR.MESSAGE
 			});
 	};
 
-	/////////////////////////////////////
+	///////////////////////////////////// vvv THIS NEEDS TO GO INTO OTHER SCREEN - CLEANER LIST???
 	// var usersRef = firebase.firestore().collection("users");
 	// var query = usersRef.where("city", "==", "Manchester");
 	useEffect(() => {
