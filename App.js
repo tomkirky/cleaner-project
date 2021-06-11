@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StripeProvider } from "@stripe/stripe-react-native";
 import { View, Text } from "react-native";
 
 // import * as firebase from "firebase";
@@ -27,10 +26,13 @@ import HomeScreen from "./components/home";
 // }
 import PaymentScreen from "./components/payment";
 import MapScreen from "./components/map";
+import UserType from "./components/userType";
+import { useState } from "react";
 const db = firebase.initializeApp(firebaseConfig).firestore(); // <--- changed from if stetement above
 const Stack = createStackNavigator();
 
 const App = () => {
+  const [userType, setUserType] = useState("")
 	var citiesRef = db.collection("cities");
 
 	citiesRef.doc("SF").set({
@@ -43,7 +45,7 @@ const App = () => {
 	});
 	return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Landing">
+			<Stack.Navigator initialRouteName="UserType">
 				<Stack.Screen
 					name="Landing"
 					component={LandingScreen}
@@ -54,6 +56,11 @@ const App = () => {
 				<Stack.Screen name="Home" component={HomeScreen} />
 				<Stack.Screen name="Payments" component={PaymentScreen} />
 				<Stack.Screen name="Map" component={MapScreen} />
+        <Stack.Screen name="UserType">
+        {(props) => (
+          <UserType {...props} setUserType={setUserType} />
+					)}
+        </Stack.Screen>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
