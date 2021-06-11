@@ -104,12 +104,21 @@ const Register = ({ navigation, userType }) => {
 	// }, []);
 	/////////////////////////////////////
 
-	return (
-		<ClientSignupForm
-			setClientRegisterDetails={setClientRegisterDetails}
-			onRegister={onRegister}
-		/>
-	);
+	if (userType === "client") {
+		return (
+			<ClientSignupForm
+				setClientRegisterDetails={setClientRegisterDetails}
+				onRegister={onRegister}
+			/>
+		);
+	} else {
+		return (
+			<ClientSignupForm
+				setClientRegisterDetails={setClientRegisterDetails}
+				onRegister={onRegister}
+			/>
+		);
+	}
 };
 
 // export class Register extends Component {

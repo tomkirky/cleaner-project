@@ -5,7 +5,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 	return (
 		<View>
 			<TextInput
-				placeholder="name"
+				placeholder="Name"
 				onChangeText={(event) =>
 					setClientRegisterDetails((currRegisterDetails) => {
 						return { ...currRegisterDetails, name: event };
@@ -13,7 +13,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 				}
 			/>
 			<TextInput
-				placeholder="city"
+				placeholder="City"
 				onChangeText={(event) =>
 					setClientRegisterDetails((currRegisterDetails) => {
 						return { ...currRegisterDetails, city: event };
@@ -21,7 +21,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 				}
 			/>
 			<TextInput
-				placeholder="username"
+				placeholder="Username"
 				onChangeText={(event) =>
 					setClientRegisterDetails((currRegisterDetails) => {
 						return { ...currRegisterDetails, username: event };
@@ -29,7 +29,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 				}
 			/>
 			<TextInput
-				placeholder="email"
+				placeholder="Email"
 				onChangeText={(event) =>
 					setClientRegisterDetails((currRegisterDetails) => {
 						return { ...currRegisterDetails, email: event };
@@ -37,7 +37,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 				}
 			/>
 			<TextInput
-				placeholder="password"
+				placeholder="Password"
 				secureTextEntry={true}
 				onChangeText={(event) =>
 					setClientRegisterDetails((currRegisterDetails) => {
