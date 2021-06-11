@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StripeProvider } from '@stripe/stripe-react-native';
+import { StripeProvider } from "@stripe/stripe-react-native";
 import { View, Text } from "react-native";
 
 // import * as firebase from "firebase";
@@ -13,44 +13,52 @@ const firebaseConfig = {
 	storageBucket: "cleaner-3207e.appspot.com",
 	messagingSenderId: "98775205470",
 	appId: "1:98775205470:web:0d767f25351083f90556cf",
-	measurementId: "G-MC62M5YJD9",
+	measurementId: "G-MC62M5YJD9"
 };
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-
-if (firebase.apps.length === 0) {
-	firebase.initializeApp(firebaseConfig);
-}
 
 import LandingScreen from "./components/landing";
 import RegisterScreen from "./components/register";
 import LoginScreen from "./components/login";
 import HomeScreen from "./components/home";
+// if (firebase.apps.length === 0) {
+//   firebase.initializeApp(firebaseConfig);
+// }
 import PaymentScreen from "./components/payment";
 import MapScreen from "./components/map";
-
+const db = firebase.initializeApp(firebaseConfig).firestore(); // <--- changed from if stetement above
 const Stack = createStackNavigator();
 
 const App = () => {
-  return (
-  <StripeProvider publishableKey="pk_test_e0Q6gnF9VeDke03pyammLdOD">
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Landing">
-        <Stack.Screen
-          name="Landing"
-          component={LandingScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Payments" component={PaymentScreen} />
-        <Stack.Screen name="Map" component={MapScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  </StripeProvider>
-  );
+	var citiesRef = db.collection("cities");
+
+	citiesRef.doc("SF").set({
+		name: "San Francisco",
+		state: "CA",
+		country: "USA",
+		capital: false,
+		population: 860000,
+		regions: ["west_coast", "norcal"]
+	});
+	return (
+		<NavigationContainer>
+			<Stack.Navigator initialRouteName="Landing">
+				<Stack.Screen
+					name="Landing"
+					component={LandingScreen}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen name="Register" component={RegisterScreen} />
+				<Stack.Screen name="Login" component={LoginScreen} />
+				<Stack.Screen name="Home" component={HomeScreen} />
+				<Stack.Screen name="Payments" component={PaymentScreen} />
+				<Stack.Screen name="Map" component={MapScreen} />
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 };
+
 export default App;
 // start here
 // export default class App extends Component {
