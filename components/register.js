@@ -113,8 +113,8 @@ const Register = ({ navigation, userType }) => {
 		);
 	} else {
 		return (
-			<ClientSignupForm
-				setClientRegisterDetails={setClientRegisterDetails}
+			<CleanerSignupForm
+				setCleanerRegisterDetails={setCleanerRegisterDetails}
 				onRegister={onRegister}
 			/>
 		);
