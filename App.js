@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-
+import { StripeProvider } from '@stripe/stripe-react-native';
 import { View, Text } from "react-native";
 
 // import * as firebase from "firebase";
@@ -26,11 +26,14 @@ import LandingScreen from "./components/landing";
 import RegisterScreen from "./components/register";
 import LoginScreen from "./components/login";
 import HomeScreen from "./components/home";
+import PaymentScreen from "./components/payment";
+import MapScreen from "./components/map";
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
+  <StripeProvider publishableKey="pk_test_e0Q6gnF9VeDke03pyammLdOD">
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Landing">
         <Stack.Screen
@@ -41,8 +44,11 @@ const App = () => {
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Payments" component={PaymentScreen} />
+        <Stack.Screen name="Map" component={MapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+  </StripeProvider>
   );
 };
 export default App;
