@@ -1,1 +1,1 @@
-const googleAPIkey = "AIzaSyAiTx5M3G2PgvSZ7loxCIQUZ6W59dFzbQ8";
+export const googleMapsAPI = "AIzaSyBNC7c8t_qjWvnhZvz4AE06KpXhOZL0XmE";

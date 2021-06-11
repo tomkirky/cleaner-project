@@ -1,34 +1,56 @@
 import * as React from "react";
 import MapView from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
+import axios from "axios";
+import { googleMapsAPI } from "../config";
+import { useState } from "react";
+import { useEffect } from "react/cjs/react.production.min";
 
 const Map = () => {
-  return (
-    <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: 53.4467871,
-          longitude: -2.3134059,
-          latitudeDelta: 0.07,
-          longitudeDelta: 0.07,
-        }}
-      />
-    </View>
-  );
+	const [coordinates, setCoordinates] = useState({
+		lat: 53.4467871,
+		lng: -2.3134059
+	});
+	useEffect(() => {
+		axios
+			.get(
+				`https://maps.googleapis.com/maps/api/geocode/json?address=24%20Sussex%20Drive%20Ottawa%20ON&key=${googleMapsAPI}`
+			)
+			.then((result) => {
+				const { lat, lng } = result.data.results[0].geometry.location;
+				setCoordinates((currCoordinates) => {
+					return { ...currCoordinates, lat, lng };
+				});
+			});
+	}, []);
+	// ^^^ getting the response but struggling to set State
+
+	https: return (
+		<View style={styles.container}>
+			<MapView
+				style={styles.map}
+				initialRegion={{
+					latitude: coordinates.lat,
+					longitude: coordinates.lng,
+					latitudeDelta: 0.07,
+					longitudeDelta: 0.07
+				}}
+			/>
+		</View>
+	);
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  map: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-  },
+	container: {
+		flex: 1,
+		backgroundColor: "#fff",
+		alignItems: "center",
+		justifyContent: "center"
+	},
+	map: {
+		width: Dimensions.get("window").width,
+		height: Dimensions.get("window").height
+	}
 });
 
 export default Map;
