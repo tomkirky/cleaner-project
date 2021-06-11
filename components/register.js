@@ -105,7 +105,10 @@ const Register = ({ navigation, userType }) => {
 	/////////////////////////////////////
 
 	return (
-		<ClientSignupForm setClientRegisterDetails={setClientRegisterDetails} />
+		<ClientSignupForm
+			setClientRegisterDetails={setClientRegisterDetails}
+			onRegister={onRegister}
+		/>
 	);
 };
 

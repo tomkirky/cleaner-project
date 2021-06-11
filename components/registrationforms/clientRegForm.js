@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Button, TextInput } from "react-native";
 
-export const ClientSignupForm = ({ setClientRegisterDetails }) => {
+export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 	return (
 		<View>
 			<TextInput
@@ -17,6 +17,14 @@ export const ClientSignupForm = ({ setClientRegisterDetails }) => {
 				onChangeText={(event) =>
 					setClientRegisterDetails((currRegisterDetails) => {
 						return { ...currRegisterDetails, city: event };
+					})
+				}
+			/>
+			<TextInput
+				placeholder="username"
+				onChangeText={(event) =>
+					setClientRegisterDetails((currRegisterDetails) => {
+						return { ...currRegisterDetails, username: event };
 					})
 				}
 			/>
