@@ -12,7 +12,7 @@ const firebaseConfig = {
 	storageBucket: "cleaner-3207e.appspot.com",
 	messagingSenderId: "98775205470",
 	appId: "1:98775205470:web:0d767f25351083f90556cf",
-	measurementId: "G-MC62M5YJD9"
+	measurementId: "G-MC62M5YJD9",
 };
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -26,13 +26,13 @@ import HomeScreen from "./components/home";
 // }
 import PaymentScreen from "./components/payment";
 import MapScreen from "./components/map";
-import UserType from "./components/userType";
+import UserType from "./components/UserType";
 import { useState } from "react";
 const db = firebase.initializeApp(firebaseConfig).firestore(); // <--- changed from if stetement above
 const Stack = createStackNavigator();
 
 const App = () => {
-  const [userType, setUserType] = useState("")
+	const [userType, setUserType] = useState("");
 	var citiesRef = db.collection("cities");
 
 	citiesRef.doc("SF").set({
@@ -41,7 +41,7 @@ const App = () => {
 		country: "USA",
 		capital: false,
 		population: 860000,
-		regions: ["west_coast", "norcal"]
+		regions: ["west_coast", "norcal"],
 	});
 	return (
 		<NavigationContainer>
@@ -51,16 +51,34 @@ const App = () => {
 					component={LandingScreen}
 					options={{ headerShown: false }}
 				/>
-				<Stack.Screen name="Register" component={RegisterScreen} />
+				<Stack.Screen
+					name="Register"
+					options={{ title: `Please enter ${userType} details` }}
+				>
+					{(props) => (
+						<RegisterScreen
+							{...props}
+							userType={userType}
+							setUserType={setUserType}
+						/>
+					)}
+				</Stack.Screen>
 				<Stack.Screen name="Login" component={LoginScreen} />
 				<Stack.Screen name="Home" component={HomeScreen} />
 				<Stack.Screen name="Payments" component={PaymentScreen} />
 				<Stack.Screen name="Map" component={MapScreen} />
-        <Stack.Screen name="UserType">
-        {(props) => (
-          <UserType {...props} setUserType={setUserType} />
+				<Stack.Screen
+					name="UserType"
+					options={{ title: `Please enter ${userType} details` }}
+				>
+					{(props) => (
+						<UserType
+							{...props}
+							userType={userType}
+							setUserType={setUserType}
+						/>
 					)}
-        </Stack.Screen>
+				</Stack.Screen>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

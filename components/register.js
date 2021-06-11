@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { ClientSignupForm } from "./registrationforms/clientRegForm";
+import { CleanerSignupForm } from "./registrationforms/cleanersRegForm";
 import firebase from "firebase";
 import { useEffect } from "react";
 // import { db } from "../App";
 
-const Register = ({ navigation, userType }) => {
+const Register = ({ userType }) => {
 	const [clientRegisterDetails, setClientRegisterDetails] = useState({
 		name: "",
 		city: "",
@@ -102,8 +102,7 @@ const Register = ({ navigation, userType }) => {
 	// 			});
 	// 		});
 	// }, []);
-	/////////////////////////////////////
-
+	////////////////////////////////////
 	if (userType === "client") {
 		return (
 			<ClientSignupForm
