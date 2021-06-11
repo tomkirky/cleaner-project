@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-
+import { StripeProvider } from "@stripe/stripe-react-native";
 import { View, Text } from "react-native";
 
 // import * as firebase from "firebase";
@@ -25,6 +25,8 @@ import HomeScreen from "./components/home";
 // if (firebase.apps.length === 0) {
 //   firebase.initializeApp(firebaseConfig);
 // }
+import PaymentScreen from "./components/payment";
+import MapScreen from "./components/map";
 const db = firebase.initializeApp(firebaseConfig).firestore(); // <--- changed from if stetement above
 const Stack = createStackNavigator();
 
@@ -50,10 +52,13 @@ const App = () => {
 				<Stack.Screen name="Register" component={RegisterScreen} />
 				<Stack.Screen name="Login" component={LoginScreen} />
 				<Stack.Screen name="Home" component={HomeScreen} />
+				<Stack.Screen name="Payments" component={PaymentScreen} />
+				<Stack.Screen name="Map" component={MapScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
 };
+
 export default App;
 // start here
 // export default class App extends Component {
