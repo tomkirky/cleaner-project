@@ -1,19 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StripeProvider } from "@stripe/stripe-react-native";
+// import { StripeProvider } from "@stripe/stripe-react-native";
 import { View, Text } from "react-native";
 
 // import * as firebase from "firebase";
 import firebase from "firebase/app";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyCypVoinAdRkCENQfn2AqR6ebT-11sovAs",
-	authDomain: "cleaner-3207e.firebaseapp.com",
-	projectId: "cleaner-3207e",
-	storageBucket: "cleaner-3207e.appspot.com",
-	messagingSenderId: "98775205470",
-	appId: "1:98775205470:web:0d767f25351083f90556cf",
-	measurementId: "G-MC62M5YJD9"
+  apiKey: "AIzaSyCypVoinAdRkCENQfn2AqR6ebT-11sovAs",
+  authDomain: "cleaner-3207e.firebaseapp.com",
+  projectId: "cleaner-3207e",
+  storageBucket: "cleaner-3207e.appspot.com",
+  messagingSenderId: "98775205470",
+  appId: "1:98775205470:web:0d767f25351083f90556cf",
+  measurementId: "G-MC62M5YJD9",
 };
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -31,32 +31,32 @@ const db = firebase.initializeApp(firebaseConfig).firestore(); // <--- changed f
 const Stack = createStackNavigator();
 
 const App = () => {
-	var citiesRef = db.collection("cities");
+  var citiesRef = db.collection("cities");
 
-	citiesRef.doc("SF").set({
-		name: "San Francisco",
-		state: "CA",
-		country: "USA",
-		capital: false,
-		population: 860000,
-		regions: ["west_coast", "norcal"]
-	});
-	return (
-		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Landing">
-				<Stack.Screen
-					name="Landing"
-					component={LandingScreen}
-					options={{ headerShown: false }}
-				/>
-				<Stack.Screen name="Register" component={RegisterScreen} />
-				<Stack.Screen name="Login" component={LoginScreen} />
-				<Stack.Screen name="Home" component={HomeScreen} />
-				<Stack.Screen name="Payments" component={PaymentScreen} />
-				<Stack.Screen name="Map" component={MapScreen} />
-			</Stack.Navigator>
-		</NavigationContainer>
-	);
+  citiesRef.doc("SF").set({
+    name: "San Francisco",
+    state: "CA",
+    country: "USA",
+    capital: false,
+    population: 860000,
+    regions: ["west_coast", "norcal"],
+  });
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Landing">
+        <Stack.Screen
+          name="Landing"
+          component={LandingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Payments" component={PaymentScreen} />
+        <Stack.Screen name="Map" component={MapScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 export default App;
