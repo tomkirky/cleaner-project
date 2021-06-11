@@ -1,36 +1,39 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-
+import { StripeProvider } from '@stripe/stripe-react-native';
 import { View, Text } from "react-native";
 
 // import * as firebase from "firebase";
 import firebase from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCypVoinAdRkCENQfn2AqR6ebT-11sovAs",
-  authDomain: "cleaner-3207e.firebaseapp.com",
-  projectId: "cleaner-3207e",
-  storageBucket: "cleaner-3207e.appspot.com",
-  messagingSenderId: "98775205470",
-  appId: "1:98775205470:web:0d767f25351083f90556cf",
-  measurementId: "G-MC62M5YJD9",
+	apiKey: "AIzaSyCypVoinAdRkCENQfn2AqR6ebT-11sovAs",
+	authDomain: "cleaner-3207e.firebaseapp.com",
+	projectId: "cleaner-3207e",
+	storageBucket: "cleaner-3207e.appspot.com",
+	messagingSenderId: "98775205470",
+	appId: "1:98775205470:web:0d767f25351083f90556cf",
+	measurementId: "G-MC62M5YJD9",
 };
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 if (firebase.apps.length === 0) {
-  firebase.initializeApp(firebaseConfig);
+	firebase.initializeApp(firebaseConfig);
 }
 
 import LandingScreen from "./components/landing";
 import RegisterScreen from "./components/register";
 import LoginScreen from "./components/login";
 import HomeScreen from "./components/home";
+import PaymentScreen from "./components/payment";
+import MapScreen from "./components/map";
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
+  <StripeProvider publishableKey="pk_test_e0Q6gnF9VeDke03pyammLdOD">
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Landing">
         <Stack.Screen
@@ -41,8 +44,11 @@ const App = () => {
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Payments" component={PaymentScreen} />
+        <Stack.Screen name="Map" component={MapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+  </StripeProvider>
   );
 };
 export default App;
