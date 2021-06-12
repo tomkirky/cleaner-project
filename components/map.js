@@ -3,14 +3,14 @@ import MapView from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import axios from "axios";
 import { googleMapsAPI } from "../config";
-import { useState } from "react";
-import { useEffect } from "react/cjs/react.production.min";
+import { useState, useEffect } from "react";
 
 const Map = () => {
 	const [coordinates, setCoordinates] = useState({
-		lat: 53.4467871,
-		lng: -2.3134059
+		lat: "",
+		lng: ""
 	});
+
 	useEffect(() => {
 		axios
 			.get(
@@ -19,12 +19,13 @@ const Map = () => {
 			.then((result) => {
 				const { lat, lng } = result.data.results[0].geometry.location;
 				setCoordinates((currCoordinates) => {
-					return { ...currCoordinates, lat, lng };
+					return { ...currCoordinates, lat: lat, lng: lng };
 				});
 			});
-	}, []);
+	}, [setCoordinates]);
 	// ^^^ getting the response but struggling to set State
 
+	console.log(coordinates.lat);
 	https: return (
 		<View style={styles.container}>
 			<MapView
