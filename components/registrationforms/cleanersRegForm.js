@@ -16,10 +16,10 @@ export const CleanerSignupForm = ({
 				}
 			/>
 			<TextInput
-				placeholder="City"
+				placeholder="Postcode"
 				onChangeText={(event) =>
 					setCleanerRegisterDetails((currRegisterDetails) => {
-						return { ...currRegisterDetails, companyCity: event };
+						return { ...currRegisterDetails, companyPostcode: event };
 					})
 				}
 			/>
@@ -50,7 +50,6 @@ export const CleanerSignupForm = ({
 			/>
 			<TextInput
 				placeholder="Briefly describe your company..."
-				secureTextEntry={true}
 				onChangeText={(event) =>
 					setCleanerRegisterDetails((currRegisterDetails) => {
 						return { ...currRegisterDetails, companyDescription: event };

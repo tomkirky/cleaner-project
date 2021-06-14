@@ -5,10 +5,10 @@ import firebase from "firebase";
 import { useEffect } from "react";
 // import { db } from "../App";
 
-const Register = ({ userType }) => {
+const Register = ({ userType, navigation }) => {
 	const [clientRegisterDetails, setClientRegisterDetails] = useState({
 		name: "",
-		city: "",
+		postcode: "",
 		username: "",
 		email: "",
 		password: "",
@@ -16,7 +16,7 @@ const Register = ({ userType }) => {
 
 	const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
 		companyName: "",
-		companyCity: "",
+		companyPostcode: "",
 		companyPhoneNumber: "",
 		companyEmail: "",
 		companyPassword: "",
@@ -24,10 +24,10 @@ const Register = ({ userType }) => {
 	});
 
 	const onRegister = () => {
-		const { name, city, username, email, password } = clientRegisterDetails;
+		const { name, postcode, username, email, password } = clientRegisterDetails;
 		const {
 			companyName,
-			companyCity,
+			companyPostcode,
 			companyPhoneNumber,
 			companyEmail,
 			companyPassword,
@@ -41,11 +41,11 @@ const Register = ({ userType }) => {
 				.then((result) => {
 					firebase
 						.firestore()
-						.collection("users")
+						.collection("clients")
 						.doc(firebase.auth().currentUser.uid)
 						.set({
 							name,
-							city,
+							postcode,
 							username,
 							email,
 						});
@@ -69,13 +69,13 @@ const Register = ({ userType }) => {
 						.doc(firebase.auth().currentUser.uid)
 						.set({
 							companyName,
-							companyCity,
+							companyPostcode,
 							companyPhoneNumber,
 							companyEmail,
 							companyDescription,
 						});
 					// console.log(result);
-					navigation.navigate("Home");
+					navigation.navigate("Map");
 				})
 				.catch((error) => {
 					if (error.code === "auth/invalid-email") {
@@ -88,12 +88,12 @@ const Register = ({ userType }) => {
 
 	///////////////////////////////////// vvv THIS NEEDS TO GO INTO OTHER SCREEN - CLEANER LIST???
 	// var usersRef = firebase.firestore().collection("users");
-	// var query = usersRef.where("city", "==", "Manchester");
+	// var query = usersRef.where("postcode", "==", "Manchester");
 	// useEffect(() => {
 	// 	firebase
 	// 		.firestore()
 	// 		.collection("users")
-	// 		.where("city", "==", "Manchester")
+	// 		.where("postcode", "==", "Manchester")
 	// 		.get()
 	// 		.then((querySnapshot) => {
 	// 			querySnapshot.forEach((doc) => {

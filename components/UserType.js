@@ -9,8 +9,6 @@ const UserType = ({ navigation, setUserType }) => {
 		setUserType(user);
 	}
 
-	console.log();
-
 	return (
 		<View style={styles.container}>
 			<View style={styles.button}>
@@ -30,6 +28,15 @@ const UserType = ({ navigation, setUserType }) => {
 					onPress={() => onPressHandler("client")}
 				>
 					I have dirty windows
+				</Button>
+			</View>
+			<View style={styles.button}>
+				<Button
+					color="blue"
+					mode="contained"
+					onPress={() => navigation.navigate("Login")}
+				>
+					Or Login
 				</Button>
 			</View>
 		</View>

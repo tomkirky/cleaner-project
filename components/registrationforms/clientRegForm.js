@@ -13,10 +13,10 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 				}
 			/>
 			<TextInput
-				placeholder="City"
+				placeholder="Postcode"
 				onChangeText={(event) =>
 					setClientRegisterDetails((currRegisterDetails) => {
-						return { ...currRegisterDetails, city: event };
+						return { ...currRegisterDetails, postcode: event };
 					})
 				}
 			/>
