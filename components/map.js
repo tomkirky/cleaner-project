@@ -5,6 +5,8 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 import axios from "axios";
 import { googleMapsAPI } from "../configgg";
 import { useState, useEffect } from "react";
+import firebase from "firebase";
+import Slider from "@react-native-community/slider";
 
 let heatmapPoints = [
 	{ latitude: 51.430507, longitude: -0.181738, weight: 1 },
@@ -21,11 +23,28 @@ const Map = () => {
 		lat: 51.4444784,
 		lng: -0.1599027
 	});
+	const [circleRadius, setCircleRadius] = useState({
+		value: [0.2, 0.5]
+	});
+	///////////////////////////////////// vvv THIS NEEDS TO GO INTO OTHER SCREEN - CLEANER LIST???
+	useEffect(() => {
+		firebase
+			.firestore()
+			.collection("clients")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					// doc.data() is never undefined for query doc snapshots
+					console.log(doc.id, " => ", doc.data());
+				});
+			});
+	}, []);
+	/////////////////////////////////////
 
 	useEffect(() => {
 		axios
 			.get(
-				`https://maps.googleapis.com/maps/api/geocode/json?address=24%20Sussex%20Drive%20Ottawa%20ON&key=${googleMapsAPI}`
+				`https://maps.googleapis.com/maps/api/geocode/json?address=1%20Hazelbourne%20Road%20London%20SW12%209NU&key=${googleMapsAPI}`
 			)
 			.then((result) => {
 				const { lat, lng } = result.data.results[0].geometry.location;
@@ -37,41 +56,52 @@ const Map = () => {
 	}, []);
 
 	console.log(coordinates.lat);
-	// if (!isLoading) {
 	const circleLatLong = {
-		latitude: 51.4444784,
-		longitude: -0.1599027
+		latitude: coordinates.lat,
+		longitude: coordinates.lng
 	};
-	return (
-		<View style={styles.container}>
-			<MapView
-				style={styles.map}
-				initialRegion={{
-					latitude: coordinates.lat,
-					longitude: coordinates.lng,
-					latitudeDelta: 0.07,
-					longitudeDelta: 0.07
-				}}
-			>
-				<Circle
-					center={circleLatLong}
-					radius={2000}
-					strokeWidth={1}
-					strokeColor={"#1a66ff"}
-					fillColor={"rgba(230,238,255,0.5)"}
-				/>
-				<Heatmap
-					points={heatmapPoints}
-					opacity={1}
-					radius={20}
-					maxIntensity={100}
-					gradientSmoothing={10}
-					heatmapMode={"POINTS_DENSITY"}
-				/>
-			</MapView>
-		</View>
-	);
-	// }
+	if (isLoading) {
+		return <Text>...loading</Text>;
+	} else {
+		return (
+			<View style={styles.container}>
+				<MapView
+					style={styles.map}
+					initialRegion={{
+						latitude: coordinates.lat,
+						longitude: coordinates.lng,
+						latitudeDelta: 0.07,
+						longitudeDelta: 0.07
+					}}
+				>
+					<Circle
+						center={circleLatLong}
+						radius={2000}
+						strokeWidth={1}
+						strokeColor={"#1a66ff"}
+						fillColor={"rgba(230,238,255,0.5)"}
+					/>
+					<Heatmap
+						points={heatmapPoints}
+						opacity={1}
+						radius={20}
+						maxIntensity={100}
+						gradientSmoothing={10}
+						heatmapMode={"POINTS_DENSITY"}
+					/>
+				</MapView>
+				{/* <Slider
+					maximumValue={100}
+					minimumValue={0}
+					minimumTrackTintColor="#307ecc"
+					maximumTrackTintColor="#000000"
+					step={1}
+					value={circleRadius}
+					onValueChange={(circleRadius) => setCircleRadius(circleRadius)}
+				/> */}
+			</View>
+		);
+	}
 };
 
 const styles = StyleSheet.create({
