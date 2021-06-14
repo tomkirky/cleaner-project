@@ -1,7 +1,10 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
+import { auth } from "../firebase";
 
 export default function Landing({ navigation }) {
+  const user = auth.currentUser;
+  console.log(user);
   return (
     <View style={{ flex: 1, justifyContent: "center" }}>
       <Button
@@ -9,7 +12,10 @@ export default function Landing({ navigation }) {
         onPress={() => navigation.navigate("Register")}
       />
       <Button title="Login" onPress={() => navigation.navigate("Login")} />
-      <Button title="Payments" onPress={() => navigation.navigate("Payments")} />
+      <Button
+        title="Payments"
+        onPress={() => navigation.navigate("Payments")}
+      />
       <Button title="Map" onPress={() => navigation.navigate("Map")} />
     </View>
   );
