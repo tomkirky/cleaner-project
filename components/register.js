@@ -3,6 +3,7 @@ import { ClientSignupForm } from "./registrationforms/clientRegForm";
 import { CleanerSignupForm } from "./registrationforms/cleanersRegForm";
 import firebase from "firebase";
 import { useEffect } from "react";
+import { db, auth } from "../firebase";
 // import { db } from "../App";
 
 const Register = ({ userType, navigation }) => {
@@ -35,20 +36,15 @@ const Register = ({ userType, navigation }) => {
 		} = cleanerRegisterDetails;
 
 		if (userType === "client") {
-			firebase
-				.auth()
+			auth
 				.createUserWithEmailAndPassword(email, password)
 				.then((result) => {
-					firebase
-						.firestore()
-						.collection("clients")
-						.doc(firebase.auth().currentUser.uid)
-						.set({
-							name,
-							postcode,
-							username,
-							email,
-						});
+					db.collection("clients").doc(firebase.auth().currentUser.uid).set({
+						name,
+						postcode,
+						username,
+						email,
+					});
 					// console.log(result);
 					navigation.navigate("Home");
 				})
@@ -59,21 +55,16 @@ const Register = ({ userType, navigation }) => {
 					console.log(error); // NEED TO DISPLAY ERROR.MESSAGE
 				});
 		} else {
-			firebase
-				.auth()
+			auth
 				.createUserWithEmailAndPassword(companyEmail, companyPassword)
 				.then((result) => {
-					firebase
-						.firestore()
-						.collection("cleaners")
-						.doc(firebase.auth().currentUser.uid)
-						.set({
-							companyName,
-							companyPostcode,
-							companyPhoneNumber,
-							companyEmail,
-							companyDescription,
-						});
+					db.collection("cleaners").doc(auth.currentUser.uid).set({
+						companyName,
+						companyPostcode,
+						companyPhoneNumber,
+						companyEmail,
+						companyDescription,
+					});
 					// console.log(result);
 					navigation.navigate("Map");
 				})
