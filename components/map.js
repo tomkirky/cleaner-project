@@ -2,7 +2,7 @@ import * as React from "react";
 import MapView from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import axios from "axios";
-import { googleMapsAPI } from "../config";
+import { googleMapsAPI } from "../configgg";
 import { useState, useEffect } from "react";
 
 const Map = () => {
