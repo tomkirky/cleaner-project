@@ -7,9 +7,10 @@ import { useState, useEffect } from "react";
 
 const Map = () => {
 	const [coordinates, setCoordinates] = useState({
-		lat: "",
-		lng: ""
+		lat: 51.4444784,
+		lng: -0.1599027
 	});
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		axios
@@ -22,11 +23,12 @@ const Map = () => {
 					return { ...currCoordinates, lat: lat, lng: lng };
 				});
 			});
-	}, [setCoordinates]);
+	}, []);
 	// ^^^ getting the response but struggling to set State
 
 	console.log(coordinates.lat);
-	https: return (
+
+	return (
 		<View style={styles.container}>
 			<MapView
 				style={styles.map}
@@ -55,3 +57,5 @@ const styles = StyleSheet.create({
 });
 
 export default Map;
+
+// testing gitignore
