@@ -9,6 +9,7 @@ import { View, Text } from "react-native";
 import { auth, db } from "../firebase";
 
 const ChatScreen = () => {
+  console.log(auth.currentUser);
   const [messages, setMessages] = useState([]);
   useLayoutEffect(() => {
     db.collection("chats")

@@ -24,6 +24,8 @@ const Register = ({ userType, navigation }) => {
     companyEmail: "",
     companyPassword: "",
     companyDescription: "",
+    cleanerPhotoURL:
+      "https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
   });
 
   const onRegister = () => {
@@ -36,6 +38,7 @@ const Register = ({ userType, navigation }) => {
       companyEmail,
       companyPassword,
       companyDescription,
+      cleanerPhotoURL,
     } = cleanerRegisterDetails;
 
     if (userType === "client") {
@@ -65,15 +68,20 @@ const Register = ({ userType, navigation }) => {
     } else {
       auth
         .createUserWithEmailAndPassword(companyEmail, companyPassword)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          user.updateProfile({ photoURL: cleanerPhotoURL });
+        })
         .then(() => {
           db.collection("cleaners").doc(auth.currentUser.uid).set({
-            companyName,
+            name: companyName,
             companyPostcode,
             companyPhoneNumber,
             companyEmail,
             companyDescription,
+            photoURL: cleanerPhotoURL,
           });
-          // console.log(result);
+          console.log("in register.js line 84 it is: " + cleanerPhotoURL);
           navigation.navigate("Map");
         })
         .catch((error) => {
