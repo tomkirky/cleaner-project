@@ -5,52 +5,52 @@ import { auth } from "../firebase";
 import firebase from "firebase";
 
 const Login = ({ navigation }) => {
-	const [loginDetails, setLoginDetails] = useState({
-		email: "",
-		password: "",
-	});
+  const [loginDetails, setLoginDetails] = useState({
+    email: "",
+    password: "",
+  });
 
-	const onSignUp = () => {
-		const { email, password } = loginDetails;
-		console.log(loginDetails);
-		auth
-			.signInWithEmailAndPassword(email, password)
-			.then((result) => {
-				// console.log(result);
+  const onSignUp = () => {
+    const { email, password } = loginDetails;
+    // console.log(loginDetails);
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        // console.log(result);
 
-				navigation.navigate("Home");
-			})
-			.catch((error) => {
-				if (error.code === "auth/invalid-email") {
-					console.log("That email address is invalid!");
-				}
-				console.log(error);
-			});
-	};
+        navigation.navigate("Landing");
+      })
+      .catch((error) => {
+        if (error.code === "auth/invalid-email") {
+          console.log("That email address is invalid!");
+        }
+        console.log(error);
+      });
+  };
 
-	return (
-		<View>
-			<TextInput
-				placeholder="email"
-				onChangeText={(event) =>
-					setLoginDetails((currLoginDetails) => {
-						return { ...currLoginDetails, email: event };
-					})
-				}
-			/>
-			<TextInput
-				placeholder="password"
-				secureTextEntry={true}
-				onChangeText={(event) =>
-					setLoginDetails((currLoginDetails) => {
-						return { ...currLoginDetails, password: event };
-					})
-				}
-			/>
+  return (
+    <View>
+      <TextInput
+        placeholder="email"
+        onChangeText={(event) =>
+          setLoginDetails((currLoginDetails) => {
+            return { ...currLoginDetails, email: event };
+          })
+        }
+      />
+      <TextInput
+        placeholder="password"
+        secureTextEntry={true}
+        onChangeText={(event) =>
+          setLoginDetails((currLoginDetails) => {
+            return { ...currLoginDetails, password: event };
+          })
+        }
+      />
 
-			<Button onPress={() => onSignUp()} title="Sign in" />
-		</View>
-	);
+      <Button onPress={() => onSignUp()} title="Sign in" />
+    </View>
+  );
 };
 
 // export class Login extends Component {
