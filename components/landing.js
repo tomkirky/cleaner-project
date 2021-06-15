@@ -16,6 +16,10 @@ export default function Landing({ navigation }) {
 			/>
 			<Button title="Map" onPress={() => navigation.navigate("Map")} />
 			<Button
+				title="Payment Amount"
+				onPress={() => navigation.navigate("PaymentAmount")}
+			/>
+			<Button
 				title="CleanersList"
 				onPress={() => navigation.navigate("CleanersList")}
 			/>
