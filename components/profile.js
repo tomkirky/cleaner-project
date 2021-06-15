@@ -3,13 +3,16 @@ import React from "react";
 import { db, auth } from "../firebase";
 import firebase from "firebase";
 import { View } from "react-native";
-import { Button, Title, Text } from "react-native-paper";
+import { Button, Title, Text, Avatar } from "react-native-paper";
 
 const Profile = ({ cleaner, navigation }) => {
-	console.log(cleaner);
-
 	return (
 		<View>
+			<Avatar.Image
+				size={150}
+				source={{ uri: cleaner.photoURL }}
+				style={{ margin: 25, alignSelf: "center" }}
+			/>
 			<Title style={{ padding: 10, alignSelf: "center" }}>
 				{cleaner.companyName}
 			</Title>
@@ -20,6 +23,7 @@ const Profile = ({ cleaner, navigation }) => {
 				icon="message-outline"
 				mode="contained"
 				style={{ padding: 10, justifyContent: "center", margin: 10 }}
+				onPress={() => navigation.navigate("ChatScreen")}
 			>
 				Chat to {cleaner.companyName}
 			</Button>

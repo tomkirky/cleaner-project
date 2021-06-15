@@ -3073,11 +3073,7 @@
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.0.8.tgz"
   "version" "3.0.8"
 
-<<<<<<< HEAD
-=======
 "dayjs@*", "dayjs@^1.8.15":
->>>>>>> c8f7bcca0b1d3f5e4739fd29ebb71bb282d0e2e7
-"dayjs@^1.8.15":
   "integrity" "sha512-BUFis41ikLz+65iH6LHQCDm4YPMj5r1YFLdupPIyM4SGcXMmtiLQ7U37i+hGS8urIuqe7I/ou3IS1jVc4nbN4g=="
   "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.10.5.tgz"
   "version" "1.10.5"
@@ -5501,11 +5497,7 @@
   dependencies:
     "asap" "~2.0.6"
 
-<<<<<<< HEAD
-=======
 "prop-types@*", "prop-types@^15.6.0", "prop-types@^15.6.2", "prop-types@^15.7.2", "prop-types@^15.7.x":
->>>>>>> c8f7bcca0b1d3f5e4739fd29ebb71bb282d0e2e7
-"prop-types@^15.6.0", "prop-types@^15.6.2", "prop-types@^15.7.2":
   "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
@@ -5594,13 +5586,11 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
 
-<<<<<<< HEAD
-=======
 "react-native-communications@^2.2.1":
   "integrity" "sha1-eIO1ayCgAu63kMET+GFuqGksp5U="
   "resolved" "https://registry.npmjs.org/react-native-communications/-/react-native-communications-2.2.1.tgz"
   "version" "2.2.1"
->>>>>>> c8f7bcca0b1d3f5e4739fd29ebb71bb282d0e2e7
+
 "react-native-elements@^3.4.2":
   "integrity" "sha512-m0eAWOn7JuR1wNTNY0WHuaqst4LI/gFE4N5Bbyfsc4DiryWsMST7aAg5w/Gos4IexWIzhLKCIkPxthND1m/8Xg=="
   "resolved" "https://registry.npmjs.org/react-native-elements/-/react-native-elements-3.4.2.tgz"
@@ -5677,15 +5667,13 @@
     "color" "^3.1.2"
     "react-native-iphone-x-helper" "^1.3.1"
 
-<<<<<<< HEAD
-=======
 "react-native-parsed-text@0.0.22":
   "integrity" "sha512-hfD83RDXZf9Fvth3DowR7j65fMnlqM9PpxZBGWkzVcUTFtqe6/yPcIoIAgrJbKn6YmtzkivmhWE2MCE4JKBXrQ=="
   "resolved" "https://registry.npmjs.org/react-native-parsed-text/-/react-native-parsed-text-0.0.22.tgz"
   "version" "0.0.22"
   dependencies:
     "prop-types" "^15.7.x"
->>>>>>> c8f7bcca0b1d3f5e4739fd29ebb71bb282d0e2e7
+
 "react-native-ratings@8.0.4":
   "integrity" "sha512-Xczu5lskIIRD6BEdz9A0jDRpEck/SFxRqiglkXi0u67yAtI1/pcJC76P4MukCbT8K4BPVl+42w83YqXBoBRl7A=="
   "resolved" "https://registry.npmjs.org/react-native-ratings/-/react-native-ratings-8.0.4.tgz"
@@ -5713,17 +5701,15 @@
   "resolved" "https://registry.npmjs.org/react-native-screens/-/react-native-screens-3.3.0.tgz"
   "version" "3.3.0"
 
-<<<<<<< HEAD
-=======
-"react-native-typing-animation@^0.1.7":
-  "integrity" "sha512-4H3rF9M+I2yAZpYJcY0Mb29TXkn98QK12rrKSY6LZj1BQD9NNmRZuNXzwX4XHapsIz+N/J8M3p27FOQPbfzqeg=="
-  "resolved" "https://registry.npmjs.org/react-native-typing-animation/-/react-native-typing-animation-0.1.7.tgz"
-  "version" "0.1.7"
->>>>>>> c8f7bcca0b1d3f5e4739fd29ebb71bb282d0e2e7
 "react-native-size-matters@^0.3.1":
   "integrity" "sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw=="
   "resolved" "https://registry.npmjs.org/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz"
   "version" "0.3.1"
+
+"react-native-typing-animation@^0.1.7":
+  "integrity" "sha512-4H3rF9M+I2yAZpYJcY0Mb29TXkn98QK12rrKSY6LZj1BQD9NNmRZuNXzwX4XHapsIz+N/J8M3p27FOQPbfzqeg=="
+  "resolved" "https://registry.npmjs.org/react-native-typing-animation/-/react-native-typing-animation-0.1.7.tgz"
+  "version" "0.1.7"
 
 "react-native-web@~0.13.12":
   "integrity" "sha512-WR/0ECAmwLQ2+2cL2Ur+0/swXFAtcSM0URoADJmG6D4MnY+wGc91JO8LoOTlgY0USBOY+qG/beRrjFa+RAuOiA=="
@@ -5748,11 +5734,7 @@
     "escape-string-regexp" "2.0.0"
     "invariant" "2.2.4"
 
-<<<<<<< HEAD
-=======
 "react-native@*", "react-native@https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz":
->>>>>>> c8f7bcca0b1d3f5e4739fd29ebb71bb282d0e2e7
-"react-native@https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz":
   "integrity" "sha512-3jHI2YufrJi7eIABRf/DN/I2yOkmIZ0vAyezTz+PAUJiEs4v//5LLojWEU+W53AZsnuaEMcl/4fVy4bd+OuUbA=="
   "resolved" "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz"
   dependencies:
@@ -5794,11 +5776,7 @@
   "resolved" "https://registry.npmjs.org/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz"
   "version" "0.13.4"
 
-<<<<<<< HEAD
-=======
 "react@*", "react@>=16.3.0", "react@16.13.1":
->>>>>>> c8f7bcca0b1d3f5e4739fd29ebb71bb282d0e2e7
-"react@16.13.1":
   "integrity" "sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.13.1.tgz"
   "version" "16.13.1"
