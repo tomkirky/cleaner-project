@@ -22,16 +22,20 @@ const Register = ({ userType, navigation }) => {
 			longitude: 1,
 			weight: 1,
 		},
+		photoURL:
+		"https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
 	});
 
-	const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
-		companyName: "",
-		companyPostcode: "",
-		companyPhoneNumber: "",
-		companyEmail: "",
-		companyPassword: "",
-		companyDescription: "",
-	});
+  const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
+    companyName: "",
+    companyPostcode: "",
+    companyPhoneNumber: "",
+    companyEmail: "",
+    companyPassword: "",
+    companyDescription: "",
+    cleanerPhotoURL:
+      "https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
+  });
 
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +46,7 @@ const Register = ({ userType, navigation }) => {
 		"weighted heat map points"
 	);
 	const onRegister = () => {
-		const { name, postcode, username, email, password, weightedHeatMapPoints } =
+		const { name, postcode, username, email, password, weightedHeatMapPoints, photoURL } =
 			clientRegisterDetails;
 		const {
 			companyName,
@@ -78,13 +82,18 @@ const Register = ({ userType, navigation }) => {
 			console.log(weightedHeatMapPoints, "this is after axios request");
 			auth
 				.createUserWithEmailAndPassword(email, password)
-				.then((result) => {
+				.then((userCredential) => {
+					const user = userCredential.user;
+					user.updateProfile({ photoURL });
+				})
+				.then(() => {
 					db.collection("clients").doc(auth.currentUser.uid).set({
 						name,
 						postcode,
 						username,
 						email,
 						weightedHeatMapPoints,
+						photoURL,
 					});
 					navigation.navigate("Home");
 				})
@@ -97,7 +106,7 @@ const Register = ({ userType, navigation }) => {
 		} else {
 			auth
 				.createUserWithEmailAndPassword(companyEmail, companyPassword)
-				.then((result) => {
+				.then(() => {
 					db.collection("cleaners").doc(auth.currentUser.uid).set({
 						companyName,
 						companyPostcode,
@@ -105,7 +114,6 @@ const Register = ({ userType, navigation }) => {
 						companyEmail,
 						companyDescription,
 					});
-					// console.log(result);
 					navigation.navigate("Map");
 				})
 				.catch((error) => {

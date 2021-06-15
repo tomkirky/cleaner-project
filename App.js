@@ -16,6 +16,7 @@ import LoginScreen from "./components/login";
 import HomeScreen from "./components/home";
 import PaymentScreen from "./components/payment";
 import MapScreen from "./components/map";
+import ChatScreen from "./components/ChatScreen";
 import UserType from "./components/UserType";
 import CleanersList from "./components/cleanersList";
 import Profile from "./components/profile";
@@ -68,6 +69,7 @@ const App = ({navigation}) => {
 						/>
 						)}
 				</Stack.Screen>
+				<Stack.Screen name="ChatScreen" component={ChatScreen} />
 				<Stack.Screen name="CleanersList">
 					{(props) => <CleanersList {...props} setCleaner={setCleaner} />}
 				</Stack.Screen>
