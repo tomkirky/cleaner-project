@@ -12,7 +12,7 @@ const ChatScreen = () => {
   console.log(auth.currentUser);
   const [messages, setMessages] = useState([]);
   useLayoutEffect(() => {
-    db.collection("chats")
+    db.collection("chatsTwo")
       .orderBy("createdAt", "desc")
       .onSnapshot((snapshot) =>
         setMessages(
@@ -31,15 +31,18 @@ const ChatScreen = () => {
       GiftedChat.append(previousMessages, messages)
     );
     const { _id, createdAt, text, user } = messages[0];
-    db.collection("chats").add({ _id, createdAt, text, user });
+    db.collection("chatsTwo").add({ _id, createdAt, text, user });
   }, []);
 
   return (
     <GiftedChat
       messages={messages}
       onSend={(messages) => onSend(messages)}
+      showUserAvatar={true}
+      showAvatarForEveryMessage={true}
       user={{
         _id: auth.currentUser.email,
+        avatar: auth.currentUser.photoURL,
       }}
     />
   );

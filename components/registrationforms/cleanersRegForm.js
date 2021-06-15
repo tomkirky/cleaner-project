@@ -56,6 +56,14 @@ export const CleanerSignupForm = ({
           })
         }
       />
+      <TextInput
+        placeholder="AvatarURL"
+        onChangeText={(event) =>
+          setCleanerRegisterDetails((currRegisterDetails) => {
+            return { ...currRegisterDetails, cleanerPhotoURL: event };
+          })
+        }
+      />
 
       <Button onPress={() => onRegister()} title="Sign Up" />
     </View>

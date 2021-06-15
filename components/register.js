@@ -33,6 +33,8 @@ const Register = ({ userType, navigation }) => {
     companyEmail: "",
     companyPassword: "",
     companyDescription: "",
+    cleanerPhotoURL:
+      "https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
   });
 
 	const [isLoading, setIsLoading] = useState(false);
