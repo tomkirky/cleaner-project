@@ -19,7 +19,9 @@ export default function Landing({ navigation }) {
 				title="Payment Amount"
 				onPress={() => navigation.navigate("PaymentAmount")}
 			/>
-			title="CleanersList" onPress={() => navigation.navigate("CleanersList")}
+			<Button
+				title="CleanersList"
+				onPress={() => navigation.navigate("CleanersList")}
 			/>
 			<Button title="Chat" onPress={() => navigation.navigate("ChatScreen")} />
 		</View>
