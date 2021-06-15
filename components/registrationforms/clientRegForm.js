@@ -49,7 +49,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
         placeholder="AvatarURL"
         onChangeText={(event) =>
           setClientRegisterDetails((currRegisterDetails) => {
-            return { ...currRegisterDetails, avatarURL: event };
+            return { ...currRegisterDetails, photoURL: event };
           })
         }
       />

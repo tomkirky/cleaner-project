@@ -13,7 +13,7 @@ const Register = ({ userType, navigation }) => {
     username: "",
     email: "",
     password: "",
-    avatarURL:
+    photoURL:
       "https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
   });
 
@@ -27,7 +27,7 @@ const Register = ({ userType, navigation }) => {
   });
 
   const onRegister = () => {
-    const { name, postcode, username, email, password, avatarURL } =
+    const { name, postcode, username, email, password, photoURL } =
       clientRegisterDetails;
     const {
       companyName,
@@ -41,13 +41,17 @@ const Register = ({ userType, navigation }) => {
     if (userType === "client") {
       auth
         .createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          user.updateProfile({ photoURL });
+        })
         .then(() => {
           db.collection("clients").doc(auth.currentUser.uid).set({
             name,
             postcode,
             username,
             email,
-            avatarURL,
+            photoURL,
           });
           // console.log(result);
           navigation.navigate("Home");
