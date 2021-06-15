@@ -29,7 +29,7 @@ const ChatScreen = () => {
       .onSnapshot((snapshot) =>
         setMessages(
           snapshot.docs.map((doc) => ({
-            _id: doc.data().id,
+            _id: doc.data()._id,
             createdAt: doc.data().createdAt,
             text: doc.data().text,
             user: doc.data().user,
