@@ -46,7 +46,7 @@ const Register = ({ userType, navigation }) => {
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          user.updateProfile({ photoURL });
+          user.updateProfile({ photoURL, displayName: name });
         })
         .then(() => {
           db.collection("clients").doc(auth.currentUser.uid).set({
@@ -70,7 +70,10 @@ const Register = ({ userType, navigation }) => {
         .createUserWithEmailAndPassword(companyEmail, companyPassword)
         .then((userCredential) => {
           const user = userCredential.user;
-          user.updateProfile({ photoURL: cleanerPhotoURL });
+          user.updateProfile({
+            photoURL: cleanerPhotoURL,
+            displayName: companyName,
+          });
         })
         .then(() => {
           db.collection("cleaners").doc(auth.currentUser.uid).set({
