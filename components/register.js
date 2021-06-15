@@ -13,6 +13,8 @@ const Register = ({ userType, navigation }) => {
     username: "",
     email: "",
     password: "",
+    avatarURL:
+      "https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
   });
 
   const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
@@ -25,7 +27,8 @@ const Register = ({ userType, navigation }) => {
   });
 
   const onRegister = () => {
-    const { name, postcode, username, email, password } = clientRegisterDetails;
+    const { name, postcode, username, email, password, avatarURL } =
+      clientRegisterDetails;
     const {
       companyName,
       companyPostcode,
@@ -38,12 +41,13 @@ const Register = ({ userType, navigation }) => {
     if (userType === "client") {
       auth
         .createUserWithEmailAndPassword(email, password)
-        .then((result) => {
-          db.collection("clients").doc(firebase.auth().currentUser.uid).set({
+        .then(() => {
+          db.collection("clients").doc(auth.currentUser.uid).set({
             name,
             postcode,
             username,
             email,
+            avatarURL,
           });
           // console.log(result);
           navigation.navigate("Home");
@@ -57,7 +61,7 @@ const Register = ({ userType, navigation }) => {
     } else {
       auth
         .createUserWithEmailAndPassword(companyEmail, companyPassword)
-        .then((result) => {
+        .then(() => {
           db.collection("cleaners").doc(auth.currentUser.uid).set({
             companyName,
             companyPostcode,
