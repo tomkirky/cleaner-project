@@ -12,7 +12,7 @@ const Login = ({ navigation }) => {
 
 	const onSignUp = () => {
 		const { email, password } = loginDetails;
-		console.log(loginDetails);
+		// console.log(loginDetails);
 		auth
 			.signInWithEmailAndPassword(email, password)
 			.then((result) => {

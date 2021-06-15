@@ -39,6 +39,15 @@ const UserType = ({ navigation, setUserType }) => {
 					Or Login
 				</Button>
 			</View>
+			<View style={styles.button}>
+				<Button
+					color="blue"
+					mode="contained"
+					onPress={() => navigation.navigate("CleanersList")}
+				>
+					Cleaners
+				</Button>
+			</View>
 		</View>
 	);
 };

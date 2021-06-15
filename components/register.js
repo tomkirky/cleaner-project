@@ -4,6 +4,10 @@ import { CleanerSignupForm } from "./registrationforms/cleanersRegForm";
 import firebase from "firebase";
 import { useEffect } from "react";
 import { db, auth } from "../firebase";
+import axios from "axios";
+import { Text } from "react-native";
+import { googleMapsAPI } from "../googleMapsAPI";
+import { postcodeFormatter } from "../utils/utils";
 // import { db } from "../App";
 
 const Register = ({ userType, navigation }) => {
@@ -13,6 +17,13 @@ const Register = ({ userType, navigation }) => {
 		username: "",
 		email: "",
 		password: "",
+		weightedHeatMapPoints: {
+			latitude: 1,
+			longitude: 1,
+			weight: 1
+		},
+		photoURL:
+			"https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png"
 	});
 
 	const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
@@ -22,30 +33,75 @@ const Register = ({ userType, navigation }) => {
 		companyEmail: "",
 		companyPassword: "",
 		companyDescription: "",
+		cleanerPhotoURL:
+			"https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png"
 	});
 
+	const [isLoading, setIsLoading] = useState(false);
+
+	// console.log(postcodeFormatter(clientRegisterDetails.postcode));
+
+	console.log(
+		clientRegisterDetails.weightedHeatMapPoints,
+		"weighted heat map points"
+	);
 	const onRegister = () => {
-		const { name, postcode, username, email, password } = clientRegisterDetails;
+		const {
+			name,
+			postcode,
+			username,
+			email,
+			password,
+			weightedHeatMapPoints,
+			photoURL
+		} = clientRegisterDetails;
 		const {
 			companyName,
 			companyPostcode,
 			companyPhoneNumber,
 			companyEmail,
 			companyPassword,
-			companyDescription,
+			companyDescription
 		} = cleanerRegisterDetails;
 
 		if (userType === "client") {
+			console.log(postcode, "postcode");
+			axios
+				.get(
+					`https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=${googleMapsAPI}`
+				)
+				.then((result) => {
+					console.log(result.data.results[0].geometry.location, "lat & long");
+					const { lat, lng } = result.data.results[0].geometry.location;
+					setIsLoading(true);
+					setClientRegisterDetails((currClientRegisterDetails) => {
+						return {
+							...currClientRegisterDetails,
+							weightedHeatMapPoints: {
+								latitude: lat,
+								longitude: lng,
+								weight: 1
+							}
+						};
+					});
+					setIsLoading(false);
+				});
+			console.log(weightedHeatMapPoints, "this is after axios request");
 			auth
 				.createUserWithEmailAndPassword(email, password)
-				.then((result) => {
-					db.collection("clients").doc(firebase.auth().currentUser.uid).set({
+				.then((userCredential) => {
+					const user = userCredential.user;
+					user.updateProfile({ photoURL });
+				})
+				.then(() => {
+					db.collection("clients").doc(auth.currentUser.uid).set({
 						name,
 						postcode,
 						username,
 						email,
+						weightedHeatMapPoints,
+						photoURL
 					});
-					// console.log(result);
 					navigation.navigate("Home");
 				})
 				.catch((error) => {
@@ -57,15 +113,14 @@ const Register = ({ userType, navigation }) => {
 		} else {
 			auth
 				.createUserWithEmailAndPassword(companyEmail, companyPassword)
-				.then((result) => {
+				.then(() => {
 					db.collection("cleaners").doc(auth.currentUser.uid).set({
 						companyName,
 						companyPostcode,
 						companyPhoneNumber,
 						companyEmail,
-						companyDescription,
+						companyDescription
 					});
-					// console.log(result);
 					navigation.navigate("Map");
 				})
 				.catch((error) => {
@@ -94,7 +149,9 @@ const Register = ({ userType, navigation }) => {
 	// 		});
 	// }, []);
 	////////////////////////////////////
-	if (userType === "client") {
+	if (isLoading) {
+		return <Text>...loading</Text>;
+	} else if (userType === "client") {
 		return (
 			<ClientSignupForm
 				setClientRegisterDetails={setClientRegisterDetails}

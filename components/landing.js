@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
+import { auth } from "../firebase";
 
 export default function Landing({ navigation }) {
 	return (
@@ -18,6 +19,9 @@ export default function Landing({ navigation }) {
 				title="Payment Amount"
 				onPress={() => navigation.navigate("PaymentAmount")}
 			/>
+			title="CleanersList" onPress={() => navigation.navigate("CleanersList")}
+			/>
+			<Button title="Chat" onPress={() => navigation.navigate("ChatScreen")} />
 		</View>
 	);
 }

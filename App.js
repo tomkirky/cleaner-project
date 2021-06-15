@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
 import { View, Text } from "react-native";
-
+import { Button, Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -16,16 +16,36 @@ import LoginScreen from "./components/login";
 import HomeScreen from "./components/home";
 import PaymentScreen from "./components/payment";
 import MapScreen from "./components/map";
+import ChatScreen from "./components/ChatScreen";
 import UserType from "./components/UserType";
+import CleanersList from "./components/cleanersList";
+import Profile from "./components/profile";
 import { useState } from "react";
 import PaymentAmount from "./components/PaymentAmount";
+import Navbar from "./components/navbar";
 const Stack = createStackNavigator();
 
-const App = () => {
+const App = ({ navigation }) => {
 	const [userType, setUserType] = useState("");
 	const [amount, setAmount] = useState("");
+	const [cleaner, setCleaner] = useState({});
+
 	return (
 		<NavigationContainer>
+			<Header
+				leftComponent={{
+					icon: "menu",
+					color: "#fff",
+					iconStyle: { color: "#fff" },
+				}}
+				centerComponent={{ text: "Home", style: { color: "#fff" } }}
+				rightComponent={
+					<Button
+						onPress={() => navigation.navigate("Landing")}
+						icon={{ name: "home", color: "#fff" }}
+					/>
+				}
+			/>
 			<Stack.Navigator initialRouteName="UserType">
 				<Stack.Screen
 					name="Landing"
@@ -64,6 +84,13 @@ const App = () => {
 							setUserType={setUserType}
 						/>
 					)}
+				</Stack.Screen>
+				<Stack.Screen name="ChatScreen" component={ChatScreen} />
+				<Stack.Screen name="CleanersList">
+					{(props) => <CleanersList {...props} setCleaner={setCleaner} />}
+				</Stack.Screen>
+				<Stack.Screen name="Profile">
+					{(props) => <Profile {...props} cleaner={cleaner} />}
 				</Stack.Screen>
 			</Stack.Navigator>
 		</NavigationContainer>
