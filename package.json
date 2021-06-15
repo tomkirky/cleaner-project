@@ -31,9 +31,9 @@
 		"react-native-paper-form-builder": "^2.0.1",
 		"react-native-reanimated": "~2.1.0",
 		"react-native-safe-area-context": "^3.2.0",
-		"react-native-star-rating": "^1.1.0",
 		"react-native-screens": "^3.3.0",
 		"react-native-sliders": "^1.1.1",
+		"react-native-star-rating": "^1.1.0",
 		"react-native-web": "~0.13.12",
 		"react-native-webview": "11.2.3",
 		"tipsi-stripe": "^7.5.3"

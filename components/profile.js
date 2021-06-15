@@ -65,6 +65,7 @@ const Profile = ({ cleaner, navigation }) => {
 				mode="contained"
 				color="green"
 				style={{ padding: 10, justifyContent: "center", margin: 10 }}
+				onPress={() => navigation.navigate("PaymentAmount")}
 			>
 				Pay {cleaner.companyName}
 			</Button>
