@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Button, TextInput } from "react-native";
 import { useState } from "react";
-
+import { auth } from "../firebase";
 import firebase from "firebase";
 
 const Login = ({ navigation }) => {
@@ -12,14 +12,13 @@ const Login = ({ navigation }) => {
 
   const onSignUp = () => {
     const { email, password } = loginDetails;
-    console.log(loginDetails);
-    firebase
-      .auth()
+    // console.log(loginDetails);
+    auth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
 
-        navigation.navigate("Home");
+        navigation.navigate("Landing");
       })
       .catch((error) => {
         if (error.code === "auth/invalid-email") {

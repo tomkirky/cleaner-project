@@ -12,5 +12,7 @@ web-build/
 # macOS
 .DS_Store
 
-googleMapsAPI.js
+
+#Production
 firebase.js
+googleMapsAPI.js
