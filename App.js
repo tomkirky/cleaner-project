@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
 import { View, Text } from "react-native";
-
+import { Button, Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -20,29 +20,35 @@ import UserType from "./components/UserType";
 import CleanersList from "./components/cleanersList";
 import Profile from "./components/profile";
 import { useState } from "react";
+import Navbar from "./components/navbar";
 const Stack = createStackNavigator();
 
-const App = () => {
+const App = ({navigation}) => {
 	const [userType, setUserType] = useState("");
 	const [cleaner, setCleaner] = useState({});
 
 	return (
 		<NavigationContainer>
+			<Header
+  leftComponent={{ icon: 'menu', color: '#fff', iconStyle: { color: '#fff' } }}
+  centerComponent={{ text: 'Home', style: { color: '#fff' } }}
+  rightComponent={<Button onPress = {() => navigation.navigate("Landing")} icon = {{name: 'home', color: '#fff'}}/>}
+/>
 			<Stack.Navigator initialRouteName="UserType">
 				<Stack.Screen
 					name="Landing"
 					component={LandingScreen}
 					options={{ headerShown: false }}
-				/>
+					/>
 				<Stack.Screen
 					name="Register"
 					options={{ title: `Please enter ${userType} details` }}
-				>
+					>
 					{(props) => (
 						<RegisterScreen
-							{...props}
-							userType={userType}
-							setUserType={setUserType}
+						{...props}
+						userType={userType}
+						setUserType={setUserType}
 						/>
 					)}
 				</Stack.Screen>
@@ -53,14 +59,14 @@ const App = () => {
 				<Stack.Screen
 					name="UserType"
 					options={{ title: `Please enter ${userType} details` }}
-				>
+					>
 					{(props) => (
 						<UserType
-							{...props}
-							userType={userType}
-							setUserType={setUserType}
+						{...props}
+						userType={userType}
+						setUserType={setUserType}
 						/>
-					)}
+						)}
 				</Stack.Screen>
 				<Stack.Screen name="CleanersList">
 					{(props) => <CleanersList {...props} setCleaner={setCleaner} />}
