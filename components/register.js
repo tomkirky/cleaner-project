@@ -20,22 +20,22 @@ const Register = ({ userType, navigation }) => {
 		weightedHeatMapPoints: {
 			latitude: 1,
 			longitude: 1,
-			weight: 1,
+			weight: 1
 		},
 		photoURL:
-		"https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
+			"https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png"
 	});
 
-  const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
-    companyName: "",
-    companyPostcode: "",
-    companyPhoneNumber: "",
-    companyEmail: "",
-    companyPassword: "",
-    companyDescription: "",
-    cleanerPhotoURL:
-      "https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
-  });
+	const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
+		companyName: "",
+		companyPostcode: "",
+		companyPhoneNumber: "",
+		companyEmail: "",
+		companyPassword: "",
+		companyDescription: "",
+		cleanerPhotoURL:
+			"https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png"
+	});
 
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -46,15 +46,22 @@ const Register = ({ userType, navigation }) => {
 		"weighted heat map points"
 	);
 	const onRegister = () => {
-		const { name, postcode, username, email, password, weightedHeatMapPoints, photoURL } =
-			clientRegisterDetails;
+		const {
+			name,
+			postcode,
+			username,
+			email,
+			password,
+			weightedHeatMapPoints,
+			photoURL
+		} = clientRegisterDetails;
 		const {
 			companyName,
 			companyPostcode,
 			companyPhoneNumber,
 			companyEmail,
 			companyPassword,
-			companyDescription,
+			companyDescription
 		} = cleanerRegisterDetails;
 
 		if (userType === "client") {
@@ -73,8 +80,8 @@ const Register = ({ userType, navigation }) => {
 							weightedHeatMapPoints: {
 								latitude: lat,
 								longitude: lng,
-								weight: 1,
-							},
+								weight: 1
+							}
 						};
 					});
 					setIsLoading(false);
@@ -93,7 +100,7 @@ const Register = ({ userType, navigation }) => {
 						username,
 						email,
 						weightedHeatMapPoints,
-						photoURL,
+						photoURL
 					});
 					navigation.navigate("Home");
 				})
@@ -112,7 +119,7 @@ const Register = ({ userType, navigation }) => {
 						companyPostcode,
 						companyPhoneNumber,
 						companyEmail,
-						companyDescription,
+						companyDescription
 					});
 					navigation.navigate("Map");
 				})

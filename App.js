@@ -24,32 +24,41 @@ import { useState } from "react";
 import Navbar from "./components/navbar";
 const Stack = createStackNavigator();
 
-const App = ({navigation}) => {
+const App = ({ navigation }) => {
 	const [userType, setUserType] = useState("");
 	const [cleaner, setCleaner] = useState({});
 
 	return (
 		<NavigationContainer>
 			<Header
-  leftComponent={{ icon: 'menu', color: '#fff', iconStyle: { color: '#fff' } }}
-  centerComponent={{ text: 'Home', style: { color: '#fff' } }}
-  rightComponent={<Button onPress = {() => navigation.navigate("Landing")} icon = {{name: 'home', color: '#fff'}}/>}
-/>
+				leftComponent={{
+					icon: "menu",
+					color: "#fff",
+					iconStyle: { color: "#fff" }
+				}}
+				centerComponent={{ text: "Home", style: { color: "#fff" } }}
+				rightComponent={
+					<Button
+						onPress={() => navigation.navigate("Landing")}
+						icon={{ name: "home", color: "#fff" }}
+					/>
+				}
+			/>
 			<Stack.Navigator initialRouteName="UserType">
 				<Stack.Screen
 					name="Landing"
 					component={LandingScreen}
 					options={{ headerShown: false }}
-					/>
+				/>
 				<Stack.Screen
 					name="Register"
 					options={{ title: `Please enter ${userType} details` }}
-					>
+				>
 					{(props) => (
 						<RegisterScreen
-						{...props}
-						userType={userType}
-						setUserType={setUserType}
+							{...props}
+							userType={userType}
+							setUserType={setUserType}
 						/>
 					)}
 				</Stack.Screen>
@@ -60,14 +69,14 @@ const App = ({navigation}) => {
 				<Stack.Screen
 					name="UserType"
 					options={{ title: `Please enter ${userType} details` }}
-					>
+				>
 					{(props) => (
 						<UserType
-						{...props}
-						userType={userType}
-						setUserType={setUserType}
+							{...props}
+							userType={userType}
+							setUserType={setUserType}
 						/>
-						)}
+					)}
 				</Stack.Screen>
 				<Stack.Screen name="ChatScreen" component={ChatScreen} />
 				<Stack.Screen name="CleanersList">
