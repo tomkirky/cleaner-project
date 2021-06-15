@@ -4,6 +4,10 @@ import { CleanerSignupForm } from "./registrationforms/cleanersRegForm";
 import firebase from "firebase";
 import { useEffect } from "react";
 import { db, auth } from "../firebase";
+import axios from "axios";
+import { Text } from "react-native";
+import { googleMapsAPI } from "../googleMapsAPI";
+import { postcodeFormatter } from "../utils/utils";
 // import { db } from "../App";
 
 const Register = ({ userType, navigation }) => {
@@ -13,6 +17,11 @@ const Register = ({ userType, navigation }) => {
 		username: "",
 		email: "",
 		password: "",
+		weightedHeatMapPoints: {
+			latitude: 1,
+			longitude: 1,
+			weight: 1,
+		},
 	});
 
 	const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
@@ -24,8 +33,17 @@ const Register = ({ userType, navigation }) => {
 		companyDescription: "",
 	});
 
+	const [isLoading, setIsLoading] = useState(false);
+
+	// console.log(postcodeFormatter(clientRegisterDetails.postcode));
+
+	console.log(
+		clientRegisterDetails.weightedHeatMapPoints,
+		"weighted heat map points"
+	);
 	const onRegister = () => {
-		const { name, postcode, username, email, password } = clientRegisterDetails;
+		const { name, postcode, username, email, password, weightedHeatMapPoints } =
+			clientRegisterDetails;
 		const {
 			companyName,
 			companyPostcode,
@@ -36,16 +54,38 @@ const Register = ({ userType, navigation }) => {
 		} = cleanerRegisterDetails;
 
 		if (userType === "client") {
+			console.log(postcode, "postcode");
+			axios
+				.get(
+					`https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=${googleMapsAPI}`
+				)
+				.then((result) => {
+					console.log(result.data.results[0].geometry.location, "lat & long");
+					const { lat, lng } = result.data.results[0].geometry.location;
+					setIsLoading(true);
+					setClientRegisterDetails((currClientRegisterDetails) => {
+						return {
+							...currClientRegisterDetails,
+							weightedHeatMapPoints: {
+								latitude: lat,
+								longitude: lng,
+								weight: 1,
+							},
+						};
+					});
+					setIsLoading(false);
+				});
+			console.log(weightedHeatMapPoints, "this is after axios request");
 			auth
 				.createUserWithEmailAndPassword(email, password)
 				.then((result) => {
-					db.collection("clients").doc(firebase.auth().currentUser.uid).set({
+					db.collection("clients").doc(auth.currentUser.uid).set({
 						name,
 						postcode,
 						username,
 						email,
+						weightedHeatMapPoints,
 					});
-					// console.log(result);
 					navigation.navigate("Home");
 				})
 				.catch((error) => {
@@ -94,7 +134,9 @@ const Register = ({ userType, navigation }) => {
 	// 		});
 	// }, []);
 	////////////////////////////////////
-	if (userType === "client") {
+	if (isLoading) {
+		return <Text>...loading</Text>;
+	} else if (userType === "client") {
 		return (
 			<ClientSignupForm
 				setClientRegisterDetails={setClientRegisterDetails}

@@ -10,8 +10,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 //   firebase.initializeApp(firebaseConfig);
 // }
 
-
-
 import LandingScreen from "./components/landing";
 import RegisterScreen from "./components/register";
 import LoginScreen from "./components/login";
@@ -19,11 +17,15 @@ import HomeScreen from "./components/home";
 import PaymentScreen from "./components/payment";
 import MapScreen from "./components/map";
 import UserType from "./components/UserType";
+import CleanersList from "./components/cleanersList";
+import Profile from "./components/profile";
 import { useState } from "react";
 const Stack = createStackNavigator();
 
 const App = () => {
 	const [userType, setUserType] = useState("");
+	const [cleaner, setCleaner] = useState({});
+
 	return (
 		<NavigationContainer>
 			<Stack.Navigator initialRouteName="UserType">
@@ -31,18 +33,18 @@ const App = () => {
 					name="Landing"
 					component={LandingScreen}
 					options={{ headerShown: false }}
-					/>
+				/>
 				<Stack.Screen
 					name="Register"
 					options={{ title: `Please enter ${userType} details` }}
-					>
+				>
 					{(props) => (
 						<RegisterScreen
-						{...props}
-						userType={userType}
-						setUserType={setUserType}
+							{...props}
+							userType={userType}
+							setUserType={setUserType}
 						/>
-						)}
+					)}
 				</Stack.Screen>
 				<Stack.Screen name="Login" component={LoginScreen} />
 				<Stack.Screen name="Home" component={HomeScreen} />
@@ -51,14 +53,20 @@ const App = () => {
 				<Stack.Screen
 					name="UserType"
 					options={{ title: `Please enter ${userType} details` }}
-					>
+				>
 					{(props) => (
 						<UserType
-						{...props}
-						userType={userType}
-						setUserType={setUserType}
+							{...props}
+							userType={userType}
+							setUserType={setUserType}
 						/>
-						)}
+					)}
+				</Stack.Screen>
+				<Stack.Screen name="CleanersList">
+					{(props) => <CleanersList {...props} setCleaner={setCleaner} />}
+				</Stack.Screen>
+				<Stack.Screen name="Profile">
+					{(props) => <Profile {...props} cleaner={cleaner} />}
 				</Stack.Screen>
 			</Stack.Navigator>
 		</NavigationContainer>
@@ -68,59 +76,59 @@ const App = () => {
 export default App;
 // start here
 // export default class App extends Component {
-	// 	constructor(props) {
-		// 		super(props);
-		// 		this.state = {
-			// 			loaded: false,
-			// 		};
-			// 	}
-			// 	componentDidMount() {
-				// 		firebase.auth().onAuthStateChanged((user) => {
-					// 			if (!user) {
-						// 				this.setState({
-							// 					loggedIn: false,
-							// 					loaded: true,
-							// 				});
-							// 			} else {
-								// 				this.setState({
-									// 					loggedIn: true,
-									// 					loaded: true,
-									// 				});
-									// 			}
-									// 		});
-									// 	}
-									// 	render() {
-										// 		const { loggedIn, loaded } = this.state;
-										// 		if (!loaded) {
-											// 			return (
-												// 				<View>
-												// 					<Text style={{ flex: 1, justifyContent: "center" }}>Loading</Text>
-												// 				</View>
-												// 			);
-												// 		}
-												// 		return (
-													// 			<NavigationContainer>
-													// 				<Stack.Navigator initialRouteName="Landing">
-													// 					<Stack.Screen
-													// 						name="Landing"
-													// 						component={LandingScreen}
-													// 						options={{ headerShown: false }}
-													// 					/>
-													// 					<Stack.Screen name="Register" component={RegisterScreen} />
-													// 				</Stack.Navigator>
-													// 			</NavigationContainer>
-													// 		);
-													// 	}
-													// }
-													//ends here
-													
-													// var citiesRef = db.collection("cities");
-													
-													// citiesRef.doc("SF").set({
-													// 	name: "San Francisco",
-													// 	state: "CA",
-													// 	country: "USA",
-													// 	capital: false,
-													// 	population: 860000,
-													// 	regions: ["west_coast", "norcal"],
-													// });
+// 	constructor(props) {
+// 		super(props);
+// 		this.state = {
+// 			loaded: false,
+// 		};
+// 	}
+// 	componentDidMount() {
+// 		firebase.auth().onAuthStateChanged((user) => {
+// 			if (!user) {
+// 				this.setState({
+// 					loggedIn: false,
+// 					loaded: true,
+// 				});
+// 			} else {
+// 				this.setState({
+// 					loggedIn: true,
+// 					loaded: true,
+// 				});
+// 			}
+// 		});
+// 	}
+// 	render() {
+// 		const { loggedIn, loaded } = this.state;
+// 		if (!loaded) {
+// 			return (
+// 				<View>
+// 					<Text style={{ flex: 1, justifyContent: "center" }}>Loading</Text>
+// 				</View>
+// 			);
+// 		}
+// 		return (
+// 			<NavigationContainer>
+// 				<Stack.Navigator initialRouteName="Landing">
+// 					<Stack.Screen
+// 						name="Landing"
+// 						component={LandingScreen}
+// 						options={{ headerShown: false }}
+// 					/>
+// 					<Stack.Screen name="Register" component={RegisterScreen} />
+// 				</Stack.Navigator>
+// 			</NavigationContainer>
+// 		);
+// 	}
+// }
+//ends here
+
+// var citiesRef = db.collection("cities");
+
+// citiesRef.doc("SF").set({
+// 	name: "San Francisco",
+// 	state: "CA",
+// 	country: "USA",
+// 	capital: false,
+// 	population: 860000,
+// 	regions: ["west_coast", "norcal"],
+// });
