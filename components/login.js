@@ -18,7 +18,7 @@ const Login = ({ navigation }) => {
 			.then((result) => {
 				// console.log(result);
 
-				navigation.navigate("Home");
+				navigation.navigate("Landing");
 			})
 			.catch((error) => {
 				if (error.code === "auth/invalid-email") {
