@@ -46,7 +46,8 @@ const App = ({ navigation }) => {
 					/>
 				}
 			/>
-			<Stack.Navigator initialRouteName="UserType">
+			<Stack.Navigator initialRouteName="LoginScreen">
+				<Stack.Screen name="Login" component={LoginScreen} />
 				<Stack.Screen
 					name="Landing"
 					component={LandingScreen}
@@ -64,7 +65,6 @@ const App = ({ navigation }) => {
 						/>
 					)}
 				</Stack.Screen>
-				<Stack.Screen name="Login" component={LoginScreen} />
 				<Stack.Screen name="Home" component={HomeScreen} />
 				<Stack.Screen name="Payments">
 					{(props) => <PaymentScreen {...props} amount={amount} />}

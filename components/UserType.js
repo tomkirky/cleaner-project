@@ -30,7 +30,7 @@ const UserType = ({ navigation, setUserType }) => {
 					I have dirty windows
 				</Button>
 			</View>
-			<View style={styles.button}>
+			{/* <View style={styles.button}>
 				<Button
 					color="blue"
 					mode="contained"
@@ -38,8 +38,8 @@ const UserType = ({ navigation, setUserType }) => {
 				>
 					Or Login
 				</Button>
-			</View>
-			<View style={styles.button}>
+			</View> */}
+			{/* <View style={styles.button}>
 				<Button
 					color="blue"
 					mode="contained"
@@ -47,7 +47,7 @@ const UserType = ({ navigation, setUserType }) => {
 				>
 					Cleaners
 				</Button>
-			</View>
+			</View> */}
 		</View>
 	);
 };

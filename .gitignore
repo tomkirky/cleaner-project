@@ -16,3 +16,4 @@ web-build/
 #Production
 firebase.js
 googleMapsAPI.js
+package-lock.json

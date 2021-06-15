@@ -30,25 +30,33 @@ const Login = ({ navigation }) => {
 
 	return (
 		<View>
-			<TextInput
-				placeholder="email"
-				onChangeText={(event) =>
-					setLoginDetails((currLoginDetails) => {
-						return { ...currLoginDetails, email: event };
-					})
-				}
-			/>
-			<TextInput
-				placeholder="password"
-				secureTextEntry={true}
-				onChangeText={(event) =>
-					setLoginDetails((currLoginDetails) => {
-						return { ...currLoginDetails, password: event };
-					})
-				}
-			/>
+			<View>
+				<TextInput
+					placeholder="email"
+					onChangeText={(event) =>
+						setLoginDetails((currLoginDetails) => {
+							return { ...currLoginDetails, email: event };
+						})
+					}
+				/>
+				<TextInput
+					placeholder="password"
+					secureTextEntry={true}
+					onChangeText={(event) =>
+						setLoginDetails((currLoginDetails) => {
+							return { ...currLoginDetails, password: event };
+						})
+					}
+				/>
 
-			<Button onPress={() => onSignUp()} title="Sign in" />
+				<Button onPress={() => onSignUp()} title="Sign in" />
+			</View>
+			<View>
+				<Button
+					onPress={() => navigation.navigate("UserType")}
+					title="Not Registered?"
+				/>
+			</View>
 		</View>
 	);
 };

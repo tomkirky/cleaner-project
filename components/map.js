@@ -3,7 +3,7 @@ import MapView from "react-native-maps";
 import { Heatmap, Circle } from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import axios from "axios";
-import { googleMapsAPI } from "../configgg";
+import { googleMapsAPI } from "../googleMapsAPI";
 import { useState, useEffect } from "react";
 import firebase from "firebase";
 import Slider from "@react-native-community/slider";
@@ -14,17 +14,17 @@ let heatmapPoints = [
 	{ latitude: 51.429272, longitude: -0.1797593, weight: 1 },
 	{ latitude: 51.453552, longitude: -0.144206, weight: 1 },
 	{ latitude: 51.452819, longitude: -0.142235, weight: 1 },
-	{ latitude: 51.451421, longitude: -0.142508, weight: 1 }
+	{ latitude: 51.451421, longitude: -0.142508, weight: 1 },
 ];
 
 const Map = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [coordinates, setCoordinates] = useState({
 		lat: 51.4444784,
-		lng: -0.1599027
+		lng: -0.1599027,
 	});
 	const [circleRadius, setCircleRadius] = useState({
-		value: [0.2, 0.5]
+		value: [0.2, 0.5],
 	});
 	///////////////////////////////////// vvv THIS NEEDS TO GO INTO OTHER SCREEN - CLEANER LIST???
 	useEffect(() => {
@@ -58,7 +58,7 @@ const Map = () => {
 	console.log(coordinates.lat);
 	const circleLatLong = {
 		latitude: coordinates.lat,
-		longitude: coordinates.lng
+		longitude: coordinates.lng,
 	};
 	if (isLoading) {
 		return <Text>...loading</Text>;
@@ -71,7 +71,7 @@ const Map = () => {
 						latitude: coordinates.lat,
 						longitude: coordinates.lng,
 						latitudeDelta: 0.07,
-						longitudeDelta: 0.07
+						longitudeDelta: 0.07,
 					}}
 				>
 					<Circle
@@ -109,12 +109,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#fff",
 		alignItems: "center",
-		justifyContent: "center"
+		justifyContent: "center",
 	},
 	map: {
 		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height
-	}
+		height: Dimensions.get("window").height,
+	},
 });
 
 export default Map;
