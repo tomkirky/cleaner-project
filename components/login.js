@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { View, Button, TextInput } from "react-native";
+import { View, Button } from "react-native";
+import { TextInput } from "react-native-paper";
 import { useState } from "react";
 import { auth } from "../firebase";
 import firebase from "firebase";
+import { StyleSheet } from "react-native";
 
 const Login = ({ navigation }) => {
 	const [loginDetails, setLoginDetails] = useState({
@@ -32,7 +34,7 @@ const Login = ({ navigation }) => {
 		<View>
 			<View>
 				<TextInput
-					placeholder="email"
+					label="Email"
 					onChangeText={(event) =>
 						setLoginDetails((currLoginDetails) => {
 							return { ...currLoginDetails, email: event };
@@ -40,7 +42,7 @@ const Login = ({ navigation }) => {
 					}
 				/>
 				<TextInput
-					placeholder="password"
+					label="Password"
 					secureTextEntry={true}
 					onChangeText={(event) =>
 						setLoginDetails((currLoginDetails) => {
@@ -104,5 +106,14 @@ const Login = ({ navigation }) => {
 // 		);
 // 	}
 // }
+
+const styles = StyleSheet.create({
+	container: {
+		justifyContent: "center",
+		marginTop: 50,
+		padding: 20,
+		backgroundColor: "#ffffff",
+	},
+});
 
 export default Login;
