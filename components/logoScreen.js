@@ -2,12 +2,12 @@ import React from "react";
 import { View, Image, Text } from "react-native";
 import FadeInLogo from "./fadeInLogo";
 
-const LogoScreen = (navigation) => {
-	// {
-	// 	setTimeout(() => {
-	// 		navigation.navigate("Login");
-	// 	}, 9000);
-	// }  // HOW TO USE THIS???
+const LogoScreen = ({ navigation }) => {
+	{
+		setTimeout(() => {
+			navigation.navigate("Login");
+		}, 9000);
+	} // HOW TO USE THIS???
 
 	return (
 		<View
