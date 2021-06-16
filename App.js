@@ -23,7 +23,34 @@ import Profile from "./components/profile";
 import { useState } from "react";
 import PaymentAmount from "./components/PaymentAmount";
 import Navbar from "./components/navbar";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+
+const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
+
+function getHeaderTitle(route) {
+	// If the focused route is not found, we need to assume it's the initial screen
+	// This can happen during if there hasn't been any navigation inside the screen
+	// In our case, it's "Feed" as that's the first screen inside the navigator
+	const routeName = getFocusedRouteNameFromRoute(route) ?? "Cleaners";
+
+	switch (routeName) {
+		case "Cleaners":
+			return "Cleaners";
+		case "Chat":
+			return "Chat";
+	}
+}
+
+export const HomeTabs = ({ navigation, setCleaner }) => {
+	return (
+		<Tab.Navigator>
+			<Tab.Screen name="Cleaners" component={CleanersList} />
+			<Tab.Screen name="Chat" component={ChatScreen} />
+		</Tab.Navigator>
+	);
+};
 
 const App = ({ navigation }) => {
 	const [userType, setUserType] = useState("");
@@ -65,6 +92,15 @@ const App = ({ navigation }) => {
 						/>
 					)}
 				</Stack.Screen>
+				<Stack.Screen name="Cleaners" component={CleanersList} />
+				<Stack.Screen
+					name="HomeTabs"
+					options={({ route }) => ({
+						headerTitle: getHeaderTitle(route),
+					})}
+				>
+					{(props) => <HomeTabs {...props} setCleaner={setCleaner} />}
+				</Stack.Screen>
 				<Stack.Screen name="Home" component={HomeScreen} />
 				<Stack.Screen name="Payments">
 					{(props) => <PaymentScreen {...props} amount={amount} />}
@@ -84,10 +120,6 @@ const App = ({ navigation }) => {
 							setUserType={setUserType}
 						/>
 					)}
-				</Stack.Screen>
-				<Stack.Screen name="ChatScreen" component={ChatScreen} />
-				<Stack.Screen name="CleanersList">
-					{(props) => <CleanersList {...props} setCleaner={setCleaner} />}
 				</Stack.Screen>
 				<Stack.Screen name="Profile">
 					{(props) => <Profile {...props} cleaner={cleaner} />}
