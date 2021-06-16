@@ -75,10 +75,7 @@ const App = ({ navigation }) => {
 							component={LandingScreen}
 							options={{ headerShown: false }}
 						/>
-						<Stack.Screen
-							name="Register"
-							options={{ title: `Please enter ${userType} details` }}
-						>
+						<Stack.Screen name="Register" options={{ title: "" }}>
 							{(props) => (
 								<RegisterScreen
 									{...props}
@@ -92,7 +89,7 @@ const App = ({ navigation }) => {
 						<Stack.Screen
 							name="HomeTabs"
 							options={({ route }) => ({
-								headerTitle: getHeaderTitle(route),
+								headerTitle: getHeaderTitle(route)
 							})}
 						>
 							{(props) => (
@@ -108,7 +105,9 @@ const App = ({ navigation }) => {
 							{(props) => <PaymentScreen {...props} amount={amount} />}
 						</Stack.Screen>
 						<Stack.Screen name="Map">
-							{(props) => <MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />}
+							{(props) => (
+								<MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />
+							)}
 						</Stack.Screen>
 						<Stack.Screen name="PaymentAmount">
 							{(props) => (

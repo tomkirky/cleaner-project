@@ -153,32 +153,19 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 		return <Text>...loading</Text>;
 	} else if (userType === "client") {
 		return (
-			<View style={styles.container}>
-				<ClientSignupForm
-					setClientRegisterDetails={setClientRegisterDetails}
-					onRegister={onRegister}
-				/>
-			</View>
+			<ClientSignupForm
+				setClientRegisterDetails={setClientRegisterDetails}
+				onRegister={onRegister}
+			/>
 		);
 	} else {
 		return (
-			<View style={styles.container}>
-				<CleanerSignupForm
-					setCleanerRegisterDetails={setCleanerRegisterDetails}
-					onRegister={onRegister}
-				/>
-			</View>
+			<CleanerSignupForm
+				setCleanerRegisterDetails={setCleanerRegisterDetails}
+				onRegister={onRegister}
+			/>
 		);
 	}
 };
-
-const styles = StyleSheet.create({
-	container: {
-		justifyContent: "center",
-		flex: 1,
-		padding: 20
-		// backgroundColor: "#ffffff"
-	}
-});
 
 export default Register;
