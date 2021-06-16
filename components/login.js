@@ -20,7 +20,7 @@ const Login = ({ navigation }) => {
 			.then((result) => {
 				// console.log(result);
 
-				navigation.navigate("Landing");
+				navigation.navigate("HomeTabs");
 			})
 			.catch((error) => {
 				if (error.code === "auth/invalid-email") {

@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import { Button, Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { CleanerContext } from "./contexts/Cleaner";
 
 // import * as firebase from "firebase";
 // if (firebase.apps.length === 0) {
@@ -23,7 +24,39 @@ import Profile from "./components/profile";
 import { useState } from "react";
 import PaymentAmount from "./components/PaymentAmount";
 import Navbar from "./components/navbar";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+
+const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
+
+function getHeaderTitle(route) {
+	// If the focused route is not found, we need to assume it's the initial screen
+	// This can happen during if there hasn't been any navigation inside the screen
+	// In our case, it's "Feed" as that's the first screen inside the navigator
+	const routeName = getFocusedRouteNameFromRoute(route) ?? "Cleaners";
+
+	switch (routeName) {
+		case "Cleaners":
+			return "Cleaners";
+		case "Chat":
+			return "Chat";
+	}
+}
+
+export const HomeTabs = ({ navigation, setCleaner, cleaner }) => {
+	console.log(cleaner, setCleaner);
+	return (
+		<Tab.Navigator>
+			<Tab.Screen name="Cleaners">
+				{(props) => (
+					<CleanersList {...props} setCleaner={setCleaner} cleaner={cleaner} />
+				)}
+			</Tab.Screen>
+			<Tab.Screen name="Chat" component={ChatScreen} />
+		</Tab.Navigator>
+	);
+};
 
 const App = ({ navigation }) => {
 	const [userType, setUserType] = useState("");
@@ -32,74 +65,73 @@ const App = ({ navigation }) => {
 	const [cleaner, setCleaner] = useState({});
 
 	return (
-		<NavigationContainer>
-			<Header
-				leftComponent={{
-					icon: "menu",
-					color: "#fff",
-					iconStyle: { color: "#fff" },
-				}}
-				centerComponent={{ text: "Home", style: { color: "#fff" } }}
-				rightComponent={
-					<Button
-						onPress={() => navigation.navigate("Landing")}
-						icon={{ name: "home", color: "#fff" }}
-					/>
-				}
-			/>
-			<Stack.Navigator initialRouteName="LoginScreen">
-				<Stack.Screen name="Login" component={LoginScreen} />
-				<Stack.Screen
-					name="Landing"
-					component={LandingScreen}
-					options={{ headerShown: false }}
-				/>
-				<Stack.Screen
-					name="Register"
-					options={{ title: `Please enter ${userType} details` }}
-				>
-					{(props) => (
-						<RegisterScreen
-							{...props}
-							userType={userType}
-							setUserType={setUserType}
-							setLoggedUserPostCode={setLoggedUserPostCode}
+		<>
+			<CleanerContext.Provider value={{ cleaner, setCleaner }}>
+				<NavigationContainer>
+					<Stack.Navigator initialRouteName="Login">
+						<Stack.Screen name="Login" component={LoginScreen} />
+						<Stack.Screen
+							name="Landing"
+							component={LandingScreen}
+							options={{ headerShown: false }}
 						/>
-					)}
-				</Stack.Screen>
-				<Stack.Screen name="Home" component={HomeScreen} />
-				<Stack.Screen name="Map">
-					{(props) => (
-						<MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />
-					)}
-				</Stack.Screen>
-				<Stack.Screen name="Payments">
-					{(props) => <PaymentScreen {...props} amount={amount} />}
-				</Stack.Screen>
-				<Stack.Screen name="PaymentAmount">
-					{(props) => <PaymentAmount {...props} setAmount={setAmount} />}
-				</Stack.Screen>
-				<Stack.Screen
-					name="UserType"
-					options={{ title: `Please enter ${userType} details` }}
-				>
-					{(props) => (
-						<UserType
-							{...props}
-							userType={userType}
-							setUserType={setUserType}
-						/>
-					)}
-				</Stack.Screen>
-				<Stack.Screen name="ChatScreen" component={ChatScreen} />
-				<Stack.Screen name="CleanersList">
-					{(props) => <CleanersList {...props} setCleaner={setCleaner} />}
-				</Stack.Screen>
-				<Stack.Screen name="Profile">
-					{(props) => <Profile {...props} cleaner={cleaner} />}
-				</Stack.Screen>
-			</Stack.Navigator>
-		</NavigationContainer>
+						<Stack.Screen
+							name="Register"
+							options={{ title: `Please enter ${userType} details` }}
+						>
+							{(props) => (
+								<RegisterScreen
+									{...props}
+									userType={userType}
+									setUserType={setUserType}
+									setLoggedUserPostCode={setLoggedUserPostCode}
+								/>
+							)}
+						</Stack.Screen>
+						<Stack.Screen name="Cleaners" component={CleanersList} />
+						<Stack.Screen
+							name="HomeTabs"
+							options={({ route }) => ({
+								headerTitle: getHeaderTitle(route),
+							})}
+						>
+							{(props) => (
+								<HomeTabs
+									{...props}
+									setCleaner={setCleaner}
+									cleaner={cleaner}
+								/>
+							)}
+						</Stack.Screen>
+						<Stack.Screen name="Home" component={HomeScreen} />
+						<Stack.Screen name="Payments">
+							{(props) => <PaymentScreen {...props} amount={amount} />}
+						</Stack.Screen>
+						<Stack.Screen name="Map">
+							{(props) => <MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />}
+						</Stack.Screen>
+						<Stack.Screen name="PaymentAmount">
+							{(props) => <PaymentAmount {...props} setAmount={setAmount} />}
+						</Stack.Screen>
+						<Stack.Screen
+							name="UserType"
+							options={{ title: `Please enter ${userType} details` }}
+						>
+							{(props) => (
+								<UserType
+									{...props}
+									userType={userType}
+									setUserType={setUserType}
+								/>
+							)}
+						</Stack.Screen>
+						<Stack.Screen name="Profile">
+							{(props) => <Profile {...props} cleaner={cleaner} />}
+						</Stack.Screen>
+					</Stack.Navigator>
+				</NavigationContainer>
+			</CleanerContext.Provider>
+		</>
 	);
 };
 

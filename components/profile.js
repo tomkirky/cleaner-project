@@ -56,7 +56,7 @@ const Profile = ({ cleaner, navigation }) => {
 					margin: 10,
 					marginTop: 30,
 				}}
-				onPress={() => navigation.navigate("ChatScreen")}
+				onPress={() => navigation.navigate("Chat")}
 			>
 				Chat to {cleaner.companyName}
 			</Button>
