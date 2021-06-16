@@ -5,6 +5,7 @@ import firebase from "firebase";
 import { View } from "react-native";
 import { Button, Title, Text, Avatar } from "react-native-paper";
 import StarRating from "react-native-star-rating";
+import FancyButton from "./styling/fancyButton";
 
 const Profile = ({ cleaner, navigation }) => {
 	const [totalRating, setTotalRating] = useState(cleaner.rating);
@@ -19,7 +20,11 @@ const Profile = ({ cleaner, navigation }) => {
 		<View>
 			<Avatar.Image
 				size={150}
-				source={{ uri: cleaner.photoURL }}
+				source={{
+					uri:
+						cleaner.photoURL ||
+						"http://clipart-library.com/new_gallery/44-448154_cleaning-clipart-worker-window-cleaning-clip-art.png "
+				}}
 				style={{ margin: 25, alignSelf: "center" }}
 			/>
 			<Title style={{ padding: 10, alignSelf: "center" }}>
@@ -47,19 +52,13 @@ const Profile = ({ cleaner, navigation }) => {
 				selectedStar={(rating) => onStarRatingPress(rating)}
 				starStyle={{ paddingLeft: 20, paddingRight: 20, alignSelf: "center" }}
 			/>
-			<Button
+			<FancyButton
 				icon="message-outline"
 				mode="contained"
-				style={{
-					padding: 10,
-					justifyContent: "center",
-					margin: 10,
-					marginTop: 30,
-				}}
 				onPress={() => navigation.navigate("Chat")}
 			>
 				Chat to {cleaner.companyName}
-			</Button>
+			</FancyButton>
 			<Button
 				icon="credit-card-outline"
 				mode="contained"
