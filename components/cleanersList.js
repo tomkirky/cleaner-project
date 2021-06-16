@@ -2,7 +2,7 @@ import { db, auth } from "../firebase";
 import firebase from "firebase";
 import { Card } from "react-native-elements";
 import React from "react";
-import { View, Text, Pressable, ScrollView } from "react-native";
+import { View, Text, Image, Pressable, ScrollView } from "react-native";
 import { useState, useEffect } from "react";
 
 const CleanersList = ({ setCleaner, navigation }) => {
@@ -57,6 +57,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
                   <Card.Title>{cleaner.companyName}</Card.Title>
                   <Card.Divider />
                   <View>
+                    <Image source={cleaner.cleanerPhotoURL} />
                     <Text>{cleaner.companyDescription}</Text>
                     <Text>{cleaner.companyCity}</Text>
                   </View>
