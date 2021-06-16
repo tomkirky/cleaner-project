@@ -1,7 +1,8 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import { Button } from "react-native-paper";
 import "react-native-gesture-handler";
+import FancyButton from "./styling/fancyButton";
 
 const UserType = ({ navigation, setUserType }) => {
 	function onPressHandler(user) {
@@ -12,23 +13,23 @@ const UserType = ({ navigation, setUserType }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.button}>
-				<Button
+				<FancyButton
 					title="window cleaner"
 					color="blue"
 					mode="contained"
 					onPress={() => onPressHandler("cleaner")}
 				>
 					I am a window cleaner
-				</Button>
+				</FancyButton>
 			</View>
 			<View style={styles.button}>
-				<Button
+				<FancyButton
 					color="blue"
 					mode="contained"
 					onPress={() => onPressHandler("client")}
 				>
 					I have dirty windows
-				</Button>
+				</FancyButton>
 			</View>
 			{/* <View style={styles.button}>
 				<Button
@@ -56,11 +57,14 @@ export default UserType;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
+		// backgroundColor: "#fff",
+		// alignItems: "center",
+		justifyContent: "center"
 	},
 	button: {
-		margin: 50,
-	},
+		marginLeft: 10,
+		marginRight: 10,
+		marginBottom: 80
+		// marginTop: 15
+	}
 });

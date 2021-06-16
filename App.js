@@ -60,6 +60,7 @@ export const HomeTabs = ({ navigation, setCleaner, cleaner }) => {
 
 const App = ({ navigation }) => {
 	const [userType, setUserType] = useState("");
+	const [loggedUserPostCode, setLoggedUserPostCode] = useState("");
 	const [amount, setAmount] = useState("");
 	const [cleaner, setCleaner] = useState({});
 
@@ -83,6 +84,7 @@ const App = ({ navigation }) => {
 									{...props}
 									userType={userType}
 									setUserType={setUserType}
+									setLoggedUserPostCode={setLoggedUserPostCode}
 								/>
 							)}
 						</Stack.Screen>
@@ -105,7 +107,9 @@ const App = ({ navigation }) => {
 						<Stack.Screen name="Payments">
 							{(props) => <PaymentScreen {...props} amount={amount} />}
 						</Stack.Screen>
-						<Stack.Screen name="Map" component={MapScreen} />
+						<Stack.Screen name="Map">
+							{(props) => <MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />}
+						</Stack.Screen>
 						<Stack.Screen name="PaymentAmount">
 							{(props) => (
 								<PaymentAmount

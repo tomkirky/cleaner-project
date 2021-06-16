@@ -1,8 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
+import { View, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
 import { db, auth } from "../firebase";
 import firebase from "firebase";
+import FancyButton from "./styling/fancyButton";
 
 const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 	const [money, setMoney] = useState();
@@ -16,9 +18,12 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 			});
 	};
 
+
+
+
 	return (
-		<>
-			<Button
+		<View style={styles.container}>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -29,8 +34,8 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				}}
 			>
 				Pay £5
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -41,8 +46,8 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				}}
 			>
 				Pay £10
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -53,8 +58,8 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				}}
 			>
 				Pay £15
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -65,8 +70,8 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				}}
 			>
 				Pay £20
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -77,8 +82,8 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				}}
 			>
 				Pay £25
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -89,9 +94,18 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				}}
 			>
 				Pay £30
-			</Button>
-		</>
+			</FancyButton>
+		</View>
 	);
 };
+
+const styles = StyleSheet.create({
+	container: {
+		justifyContent: "center",
+		flex: 1,
+		padding: 20
+		// backgroundColor: "#ffffff"
+	}
+});
 
 export default PaymentAmount;

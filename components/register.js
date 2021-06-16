@@ -10,11 +10,11 @@ import { googleMapsAPI } from "../googleMapsAPI";
 import { postcodeFormatter } from "../utils/utils";
 // import { db } from "../App";
 
-const Register = ({ userType, navigation }) => {
+const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 	const [clientRegisterDetails, setClientRegisterDetails] = useState({
 		name: "",
 		postcode: "",
-		username: "",
+		city: "",
 		email: "",
 		password: "",
 		weightedHeatMapPoints: {
@@ -29,54 +29,49 @@ const Register = ({ userType, navigation }) => {
 	const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
 		companyName: "",
 		companyPostcode: "",
-		companyPhoneNumber: "",
 		companyEmail: "",
 		companyPassword: "",
 		companyDescription: "",
+		companyCity: "",
 		cleanerPhotoURL:
-			"https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png"
+			"http://clipart-library.com/new_gallery/44-448154_cleaning-clipart-worker-window-cleaning-clip-art.png"
 	});
 
 	const [isLoading, setIsLoading] = useState(false);
 
-	// console.log(postcodeFormatter(clientRegisterDetails.postcode));
-
-	console.log(
-		clientRegisterDetails.weightedHeatMapPoints,
-		"weighted heat map points"
-	);
 	const onRegister = () => {
 		const {
 			name,
 			postcode,
-			username,
 			email,
 			password,
 			weightedHeatMapPoints,
-			photoURL
+			photoURL,
+			city
 		} = clientRegisterDetails;
 		const {
 			companyName,
 			companyPostcode,
-			companyPhoneNumber,
 			companyEmail,
 			companyPassword,
-			companyDescription
+			companyCity,
+			companyDescription,
+			cleanerPhotoURL
 		} = cleanerRegisterDetails;
 
 		if (userType === "client") {
-			console.log(postcode, "postcode");
 			axios
 				.get(
 					`https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=${googleMapsAPI}`
 				)
 				.then((result) => {
-					console.log(result.data.results[0].geometry.location, "lat & long");
 					const { lat, lng } = result.data.results[0].geometry.location;
+					const city = result.data.results[0].address_components[1].long_name;
 					setIsLoading(true);
 					setClientRegisterDetails((currClientRegisterDetails) => {
 						return {
 							...currClientRegisterDetails,
+							city,
 							weightedHeatMapPoints: {
 								latitude: lat,
 								longitude: lng,
@@ -86,7 +81,6 @@ const Register = ({ userType, navigation }) => {
 					});
 					setIsLoading(false);
 				});
-			console.log(weightedHeatMapPoints, "this is after axios request");
 			auth
 				.createUserWithEmailAndPassword(email, password)
 				.then((userCredential) => {
@@ -97,10 +91,10 @@ const Register = ({ userType, navigation }) => {
 					db.collection("clients").doc(auth.currentUser.uid).set({
 						name,
 						postcode,
-						username,
 						email,
 						weightedHeatMapPoints,
-						photoURL
+						photoURL,
+						city
 					});
 					navigation.navigate("Home");
 				})
@@ -111,15 +105,21 @@ const Register = ({ userType, navigation }) => {
 					console.log(error); // NEED TO DISPLAY ERROR.MESSAGE
 				});
 		} else {
+			setLoggedUserPostCode(companyPostcode);
 			auth
 				.createUserWithEmailAndPassword(companyEmail, companyPassword)
+				.then((userCredential) => {
+					const user = userCredential.user;
+					user.updateProfile({ photoURL: cleanerPhotoURL });
+				})
 				.then(() => {
 					db.collection("cleaners").doc(auth.currentUser.uid).set({
 						companyName,
 						companyPostcode,
-						companyPhoneNumber,
 						companyEmail,
-						companyDescription
+						companyDescription,
+						companyCity,
+						cleanerPhotoURL
 					});
 					navigation.navigate("Map");
 				})

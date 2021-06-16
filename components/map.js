@@ -1,32 +1,24 @@
 import * as React from "react";
 import MapView from "react-native-maps";
-import { Heatmap, Circle } from "react-native-maps";
+import { Heatmap, Callout, TouchableOpacity } from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import axios from "axios";
 import { googleMapsAPI } from "../googleMapsAPI";
 import { useState, useEffect } from "react";
 import firebase from "firebase";
-import Slider from "@react-native-community/slider";
+import { Button } from "react-native";
 
-let heatmapPoints = [
-	{ latitude: 51.430507, longitude: -0.181738, weight: 1 },
-	{ latitude: 51.429859, longitude: -0.181116, weight: 1 },
-	{ latitude: 51.429272, longitude: -0.1797593, weight: 1 },
-	{ latitude: 51.453552, longitude: -0.144206, weight: 1 },
-	{ latitude: 51.452819, longitude: -0.142235, weight: 1 },
-	{ latitude: 51.451421, longitude: -0.142508, weight: 1 },
-];
+const Map = ({ loggedUserPostCode, navigation }) => {
+	let heatmapPoints = [];
+	const [points, setPoints] = useState([]);
+	const [isGoogleLoading, setIsGoogleLoading] = useState(true);	
+	const [isFirebaseLoading, setIsFirebaseLoading] = useState(true);
 
-const Map = () => {
-	const [isLoading, setIsLoading] = useState(true);
 	const [coordinates, setCoordinates] = useState({
 		lat: 51.4444784,
 		lng: -0.1599027,
 	});
-	const [circleRadius, setCircleRadius] = useState({
-		value: [0.2, 0.5],
-	});
-	///////////////////////////////////// vvv THIS NEEDS TO GO INTO OTHER SCREEN - CLEANER LIST???
+
 	useEffect(() => {
 		firebase
 			.firestore()
@@ -34,33 +26,30 @@ const Map = () => {
 			.get()
 			.then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
-					// doc.data() is never undefined for query doc snapshots
-					console.log(doc.id, " => ", doc.data());
+					const client = doc.data();
+					heatmapPoints.push(client.weightedHeatMapPoints);
+					setIsFirebaseLoading(false);
 				});
+				setPoints(heatmapPoints);
 			});
 	}, []);
-	/////////////////////////////////////
 
 	useEffect(() => {
 		axios
 			.get(
-				`https://maps.googleapis.com/maps/api/geocode/json?address=1%20Hazelbourne%20Road%20London%20SW12%209NU&key=${googleMapsAPI}`
+				`https://maps.googleapis.com/maps/api/geocode/json?address=${loggedUserPostCode}&key=${googleMapsAPI}`
 			)
 			.then((result) => {
 				const { lat, lng } = result.data.results[0].geometry.location;
-				setIsLoading(false);
+				setIsGoogleLoading(false);
 				setCoordinates((currCoordinates) => {
 					return { ...currCoordinates, lat: lat, lng: lng };
 				});
 			});
 	}, []);
 
-	console.log(coordinates.lat);
-	const circleLatLong = {
-		latitude: coordinates.lat,
-		longitude: coordinates.lng,
-	};
-	if (isLoading) {
+
+	if (isGoogleLoading || isFirebaseLoading) {
 		return <Text>...loading</Text>;
 	} else {
 		return (
@@ -74,15 +63,8 @@ const Map = () => {
 						longitudeDelta: 0.07,
 					}}
 				>
-					<Circle
-						center={circleLatLong}
-						radius={2000}
-						strokeWidth={1}
-						strokeColor={"#1a66ff"}
-						fillColor={"rgba(230,238,255,0.5)"}
-					/>
 					<Heatmap
-						points={heatmapPoints}
+						points={points}
 						opacity={1}
 						radius={20}
 						maxIntensity={100}
@@ -90,15 +72,12 @@ const Map = () => {
 						heatmapMode={"POINTS_DENSITY"}
 					/>
 				</MapView>
-				{/* <Slider
-					maximumValue={100}
-					minimumValue={0}
-					minimumTrackTintColor="#307ecc"
-					maximumTrackTintColor="#000000"
-					step={1}
-					value={circleRadius}
-					onValueChange={(circleRadius) => setCircleRadius(circleRadius)}
-				/> */}
+				<Callout style={styles.buttonCallout}>
+					<Button title="Continue"onPress = {() => {
+						navigation.navigate("Landing")
+					}}>
+					</Button>
+        </Callout>
 			</View>
 		);
 	}
@@ -115,8 +94,26 @@ const styles = StyleSheet.create({
 		width: Dimensions.get("window").width,
 		height: Dimensions.get("window").height,
 	},
+	buttonCallout: {
+		flex: 1,
+		flexDirection:'row',
+		position:'absolute',
+		bottom:10,
+		alignSelf: "center",
+		justifyContent: "space-between",
+		backgroundColor: "transparent",
+		borderWidth: 0.5,
+		borderRadius: 20
+	  },
+	  touchable: {
+		backgroundColor: "lightblue",
+		padding: 10,
+		margin: 10
+	  },
+	  touchableText: {
+		fontSize: 24
+
+	  }
 });
 
 export default Map;
-
-// testing gitignore
