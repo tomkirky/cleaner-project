@@ -29,7 +29,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 
 	useEffect(() => {
 		db.collection("cleaners")
-			.where("city", "==", currentCity)
+			.where("companyCity", "==", currentCity)
 			.get()
 			.then((result) => {
 				result.forEach((doc) => {
@@ -62,9 +62,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 									<Avatar.Image
 										size={150}
 										source={{
-											uri:
-												cleaner.photoURL ||
-												"http://clipart-library.com/new_gallery/44-448154_cleaning-clipart-worker-window-cleaning-clip-art.png "
+											uri: cleaner.cleanerPhotoURL
 										}}
 										style={{ margin: 5, alignSelf: "center" }}
 									/>
