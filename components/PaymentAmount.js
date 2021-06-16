@@ -1,11 +1,13 @@
 import * as React from "react";
 import { useState } from "react";
+import { View, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
+import FancyButton from "./styling/fancyButton";
 
 const PaymentAmount = ({ navigation, setAmount }) => {
 	return (
-		<>
-			<Button
+		<View style={styles.container}>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -14,8 +16,8 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				}}
 			>
 				Pay £5
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -24,8 +26,8 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				}}
 			>
 				Pay £10
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -34,8 +36,8 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				}}
 			>
 				Pay £15
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -44,8 +46,8 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				}}
 			>
 				Pay £20
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -54,8 +56,8 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				}}
 			>
 				Pay £25
-			</Button>
-			<Button
+			</FancyButton>
+			<FancyButton
 				icon="credit-card-outline"
 				mode="contained"
 				onPress={() => {
@@ -64,9 +66,18 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				}}
 			>
 				Pay £30
-			</Button>
-		</>
+			</FancyButton>
+		</View>
 	);
 };
+
+const styles = StyleSheet.create({
+	container: {
+		justifyContent: "center",
+		flex: 1,
+		padding: 20
+		// backgroundColor: "#ffffff"
+	}
+});
 
 export default PaymentAmount;
