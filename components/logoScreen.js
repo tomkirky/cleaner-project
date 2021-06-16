@@ -3,6 +3,12 @@ import { View, Image, Text } from "react-native";
 import FadeInLogo from "./fadeInLogo";
 
 const LogoScreen = (navigation) => {
+	// {
+	// 	setTimeout(() => {
+	// 		navigation.navigate("Login");
+	// 	}, 9000);
+	// }  // HOW TO USE THIS???
+
 	return (
 		<View
 			style={{
@@ -24,33 +30,7 @@ const LogoScreen = (navigation) => {
 				/>
 			</FadeInLogo>
 		</View>
-		// setTimeout(()=>{ navigation.navigate("Login") }, 9000) // HOW TO USE THIS???
 	);
 };
 
 export default LogoScreen;
-
-// const FadeInView = (props) => {
-//     const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
-
-//     React.useEffect(() => {
-//       Animated.timing(
-//         fadeAnim,
-//         {
-//           toValue: 1,
-//           duration: 10000,
-//         }
-//       ).start();
-//     }, [fadeAnim])
-
-//     return (
-//       <Animated.View                 // Special animatable View
-//         style={{
-//           ...props.style,
-//           opacity: fadeAnim,         // Bind opacity to animated value
-//         }}
-//       >
-//         {props.children}
-//       </Animated.View>
-//     );
-//   }
