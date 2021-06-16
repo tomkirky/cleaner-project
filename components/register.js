@@ -14,6 +14,7 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
   const [clientRegisterDetails, setClientRegisterDetails] = useState({
     name: "",
     postcode: "",
+    city: "",
     email: "",
     password: "",
     weightedHeatMapPoints: {
@@ -31,6 +32,7 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
     companyEmail: "",
     companyPassword: "",
     companyDescription: "",
+    companyCity: "",
     cleanerPhotoURL:
       "https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
   });
@@ -38,13 +40,21 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onRegister = () => {
-    const { name, postcode, email, password, weightedHeatMapPoints, photoURL } =
-      clientRegisterDetails;
+    const {
+      name,
+      postcode,
+      email,
+      password,
+      weightedHeatMapPoints,
+      photoURL,
+      city,
+    } = clientRegisterDetails;
     const {
       companyName,
       companyPostcode,
       companyEmail,
       companyPassword,
+      companyCity,
       companyDescription,
       cleanerPhotoURL,
     } = cleanerRegisterDetails;
@@ -56,10 +66,12 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
         )
         .then((result) => {
           const { lat, lng } = result.data.results[0].geometry.location;
+          const city = result.data.results[0].address_components[1].long_name;
           setIsLoading(true);
           setClientRegisterDetails((currClientRegisterDetails) => {
             return {
               ...currClientRegisterDetails,
+              city,
               weightedHeatMapPoints: {
                 latitude: lat,
                 longitude: lng,
@@ -82,6 +94,7 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
             email,
             weightedHeatMapPoints,
             photoURL,
+            city,
           });
           navigation.navigate("Home");
         })
@@ -105,6 +118,7 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
             companyPostcode,
             companyEmail,
             companyDescription,
+            companyCity,
             cleanerPhotoURL,
           });
           navigation.navigate("Map");

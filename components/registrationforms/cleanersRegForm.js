@@ -26,6 +26,15 @@ export const CleanerSignupForm = ({
       />
 
       <TextInput
+        label="City"
+        onChangeText={(event) =>
+          setCleanerRegisterDetails((currRegisterDetails) => {
+            return { ...currRegisterDetails, companyCity: event };
+          })
+        }
+      />
+
+      <TextInput
         label="Email"
         onChangeText={(event) =>
           setCleanerRegisterDetails((currRegisterDetails) => {

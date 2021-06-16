@@ -4,6 +4,7 @@ import { Card } from "react-native-elements";
 import React from "react";
 import { View, Text, Image, Pressable, ScrollView } from "react-native";
 import { useState, useEffect } from "react";
+import { Avatar } from "react-native-paper";
 
 const CleanersList = ({ setCleaner, navigation }) => {
   const [cleaners, setCleaners] = useState();
@@ -27,7 +28,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 
   useEffect(() => {
     db.collection("cleaners")
-      .where("city", "==", currentCity)
+      .where("companyCity", "==", currentCity)
       .get()
       .then((result) => {
         result.forEach((doc) => {
@@ -46,6 +47,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
       <View>
         <ScrollView>
           {cleaners.map((cleaner) => {
+            console.log(cleaner.cleanerPhotoURL);
             return (
               <Pressable
                 onPress={() => {
@@ -57,7 +59,11 @@ const CleanersList = ({ setCleaner, navigation }) => {
                   <Card.Title>{cleaner.companyName}</Card.Title>
                   <Card.Divider />
                   <View>
-                    <Image source={cleaner.cleanerPhotoURL} />
+                    <Avatar.Image
+                      size={150}
+                      source={{ uri: cleaner.cleanerPhotoURL }}
+                      style={{ margin: 25, alignSelf: "center" }}
+                    />
                     <Text>{cleaner.companyDescription}</Text>
                     <Text>{cleaner.companyCity}</Text>
                   </View>
