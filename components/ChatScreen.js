@@ -25,6 +25,8 @@ const ChatScreen = () => {
 			);
 	}, []);
 
+	console.log(auth.currentUser.uid);
+
 	const onSend = useCallback((messages = []) => {
 		setMessages((previousMessages) =>
 			GiftedChat.append(previousMessages, messages)

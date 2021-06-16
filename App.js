@@ -67,7 +67,7 @@ const App = ({ navigation }) => {
 		<>
 			<CleanerContext.Provider value={{ cleaner, setCleaner }}>
 				<NavigationContainer>
-					<Stack.Navigator initialRouteName="LoginScreen">
+					<Stack.Navigator initialRouteName="Login">
 						<Stack.Screen name="Login" component={LoginScreen} />
 						<Stack.Screen
 							name="Landing"
