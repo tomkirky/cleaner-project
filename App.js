@@ -107,7 +107,13 @@ const App = ({ navigation }) => {
 						</Stack.Screen>
 						<Stack.Screen name="Map" component={MapScreen} />
 						<Stack.Screen name="PaymentAmount">
-							{(props) => <PaymentAmount {...props} setAmount={setAmount} />}
+							{(props) => (
+								<PaymentAmount
+									{...props}
+									cleaner={cleaner}
+									setAmount={setAmount}
+								/>
+							)}
 						</Stack.Screen>
 						<Stack.Screen
 							name="UserType"

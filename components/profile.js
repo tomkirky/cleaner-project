@@ -15,6 +15,22 @@ const Profile = ({ cleaner, navigation }) => {
 		setTotalRating((rating + totalRating) / 2);
 	};
 
+	console.log(auth.currentUser.uid);
+
+	const submitCleaner = () => {
+		db.collection("clients").doc(auth.currentUser.uid).update({
+			hasCleaner: true,
+			currentCleaner: cleaner.companyName,
+			dateOfPayment: new Date(),
+		});
+		db.collection("cleaners")
+			.doc(cleaner.id)
+			.update({
+				numberOfJobs: firebase.firestore.FieldValue.increment(1),
+			});
+		console.log("this has run");
+	};
+
 	return (
 		<View>
 			<Avatar.Image
@@ -65,7 +81,10 @@ const Profile = ({ cleaner, navigation }) => {
 				mode="contained"
 				color="green"
 				style={{ padding: 10, justifyContent: "center", margin: 10 }}
-				onPress={() => navigation.navigate("PaymentAmount")}
+				onPress={() => {
+					submitCleaner();
+					navigation.navigate("PaymentAmount");
+				}}
 			>
 				Pay {cleaner.companyName}
 			</Button>
