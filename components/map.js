@@ -28,7 +28,7 @@ const Map = ({ loggedUserPostCode }) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [coordinates, setCoordinates] = useState({
 		lat: 51.4444784,
-		lng: -0.1599027
+		lng: -0.1599027,
 	});
 	// const [circleRadius, setCircleRadius] = useState({
 	// 	value: [0.2, 0.5]
@@ -80,7 +80,7 @@ const Map = ({ loggedUserPostCode }) => {
 						latitude: coordinates.lat,
 						longitude: coordinates.lng,
 						latitudeDelta: 0.07,
-						longitudeDelta: 0.07
+						longitudeDelta: 0.07,
 					}}
 				>
 					{/* <Circle
@@ -118,12 +118,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#fff",
 		alignItems: "center",
-		justifyContent: "center"
+		justifyContent: "center",
 	},
 	map: {
 		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height
-	}
+		height: Dimensions.get("window").height,
+	},
 });
 
 export default Map;

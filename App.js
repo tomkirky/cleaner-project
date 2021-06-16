@@ -21,12 +21,14 @@ import UserType from "./components/UserType";
 import CleanersList from "./components/cleanersList";
 import Profile from "./components/profile";
 import { useState } from "react";
+import PaymentAmount from "./components/PaymentAmount";
 import Navbar from "./components/navbar";
 const Stack = createStackNavigator();
 
 const App = ({ navigation }) => {
 	const [userType, setUserType] = useState("");
 	const [loggedUserPostCode, setLoggedUserPostCode] = useState("");
+	const [amount, setAmount] = useState("");
 	const [cleaner, setCleaner] = useState({});
 
 	return (
@@ -35,7 +37,7 @@ const App = ({ navigation }) => {
 				leftComponent={{
 					icon: "menu",
 					color: "#fff",
-					iconStyle: { color: "#fff" }
+					iconStyle: { color: "#fff" },
 				}}
 				centerComponent={{ text: "Home", style: { color: "#fff" } }}
 				rightComponent={
@@ -45,7 +47,8 @@ const App = ({ navigation }) => {
 					/>
 				}
 			/>
-			<Stack.Navigator initialRouteName="UserType">
+			<Stack.Navigator initialRouteName="LoginScreen">
+				<Stack.Screen name="Login" component={LoginScreen} />
 				<Stack.Screen
 					name="Landing"
 					component={LandingScreen}
@@ -64,13 +67,17 @@ const App = ({ navigation }) => {
 						/>
 					)}
 				</Stack.Screen>
-				<Stack.Screen name="Login" component={LoginScreen} />
 				<Stack.Screen name="Home" component={HomeScreen} />
-				<Stack.Screen name="Payments" component={PaymentScreen} />
 				<Stack.Screen name="Map">
 					{(props) => (
 						<MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />
 					)}
+				</Stack.Screen>
+				<Stack.Screen name="Payments">
+					{(props) => <PaymentScreen {...props} amount={amount} />}
+				</Stack.Screen>
+				<Stack.Screen name="PaymentAmount">
+					{(props) => <PaymentAmount {...props} setAmount={setAmount} />}
 				</Stack.Screen>
 				<Stack.Screen
 					name="UserType"
