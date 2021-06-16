@@ -48,6 +48,15 @@ const UserType = ({ navigation, setUserType }) => {
 					Cleaners
 				</Button>
 			</View>
+			<View style={styles.button}>
+				<Button
+					color="blue"
+					mode="contained"
+					onPress={() => navigation.navigate("Map")}
+				>
+					Map
+				</Button>
+			</View>
 		</View>
 	);
 };
@@ -58,9 +67,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#fff",
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "center"
 	},
 	button: {
-		margin: 50,
-	},
+		margin: 50
+	}
 });

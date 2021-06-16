@@ -3,48 +3,57 @@ import MapView from "react-native-maps";
 import { Heatmap, Circle } from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import axios from "axios";
-import { googleMapsAPI } from "../configgg";
+import { googleMapsAPI } from "../googleMapsAPI";
 import { useState, useEffect } from "react";
 import firebase from "firebase";
-import Slider from "@react-native-community/slider";
+// import Slider from "@react-native-community/slider";
+import postcodeFormatter from "../utils/utils";
 
-let heatmapPoints = [
-	{ latitude: 51.430507, longitude: -0.181738, weight: 1 },
-	{ latitude: 51.429859, longitude: -0.181116, weight: 1 },
-	{ latitude: 51.429272, longitude: -0.1797593, weight: 1 },
-	{ latitude: 51.453552, longitude: -0.144206, weight: 1 },
-	{ latitude: 51.452819, longitude: -0.142235, weight: 1 },
-	{ latitude: 51.451421, longitude: -0.142508, weight: 1 }
-];
-
-const Map = () => {
+const Map = ({ loggedUserPostCode }) => {
+	let heatmapPoints = [
+		{
+			latitude: 53.4805634,
+			longitude: -2.237148,
+			weight: 1
+		},
+		{ latitude: 53.483298, longitude: -2.231452, weight: 1 },
+		{
+			latitude: 53.483183,
+			longitude: -2.2304719,
+			weight: 1
+		}
+	];
+	console.log(loggedUserPostCode, "<== cleaner postcode");
+	const [points, setPoints] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [coordinates, setCoordinates] = useState({
 		lat: 51.4444784,
 		lng: -0.1599027
 	});
-	const [circleRadius, setCircleRadius] = useState({
-		value: [0.2, 0.5]
-	});
-	///////////////////////////////////// vvv THIS NEEDS TO GO INTO OTHER SCREEN - CLEANER LIST???
-	useEffect(() => {
-		firebase
-			.firestore()
-			.collection("clients")
-			.get()
-			.then((querySnapshot) => {
-				querySnapshot.forEach((doc) => {
-					// doc.data() is never undefined for query doc snapshots
-					console.log(doc.id, " => ", doc.data());
-				});
-			});
-	}, []);
+	// const [circleRadius, setCircleRadius] = useState({
+	// 	value: [0.2, 0.5]
+	// });
+
+	/////////////////////////////////////
+	// useEffect(() => {
+	// 	firebase
+	// 		.firestore()
+	// 		.collection("clients")
+	// 		.get()
+	// 		.then((querySnapshot) => {
+	// 			querySnapshot.forEach((doc) => {
+	// 				heatmapPoints.push(doc.data.weightedHeatMapPoints); // check this line
+	// 				// console.log(doc.id, " => ", doc.data());
+	// 			});
+	// 			setPoints(heatmapPoints);
+	// 		});
+	// }, []);
 	/////////////////////////////////////
 
 	useEffect(() => {
 		axios
 			.get(
-				`https://maps.googleapis.com/maps/api/geocode/json?address=1%20Hazelbourne%20Road%20London%20SW12%209NU&key=${googleMapsAPI}`
+				`https://maps.googleapis.com/maps/api/geocode/json?address=M1 1ED&key=${googleMapsAPI}`
 			)
 			.then((result) => {
 				const { lat, lng } = result.data.results[0].geometry.location;
@@ -55,11 +64,11 @@ const Map = () => {
 			});
 	}, []);
 
-	console.log(coordinates.lat);
-	const circleLatLong = {
-		latitude: coordinates.lat,
-		longitude: coordinates.lng
-	};
+	// console.log(coordinates.lat);
+	// const circleLatLong = {
+	// 	latitude: coordinates.lat,
+	// 	longitude: coordinates.lng
+	// };
 	if (isLoading) {
 		return <Text>...loading</Text>;
 	} else {
@@ -74,13 +83,13 @@ const Map = () => {
 						longitudeDelta: 0.07
 					}}
 				>
-					<Circle
+					{/* <Circle
 						center={circleLatLong}
 						radius={2000}
 						strokeWidth={1}
 						strokeColor={"#1a66ff"}
 						fillColor={"rgba(230,238,255,0.5)"}
-					/>
+					/> */}
 					<Heatmap
 						points={heatmapPoints}
 						opacity={1}

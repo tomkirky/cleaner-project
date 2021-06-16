@@ -26,6 +26,7 @@ const Stack = createStackNavigator();
 
 const App = ({ navigation }) => {
 	const [userType, setUserType] = useState("");
+	const [loggedUserPostCode, setLoggedUserPostCode] = useState("");
 	const [cleaner, setCleaner] = useState({});
 
 	return (
@@ -59,13 +60,18 @@ const App = ({ navigation }) => {
 							{...props}
 							userType={userType}
 							setUserType={setUserType}
+							setLoggedUserPostCode={setLoggedUserPostCode}
 						/>
 					)}
 				</Stack.Screen>
 				<Stack.Screen name="Login" component={LoginScreen} />
 				<Stack.Screen name="Home" component={HomeScreen} />
 				<Stack.Screen name="Payments" component={PaymentScreen} />
-				<Stack.Screen name="Map" component={MapScreen} />
+				<Stack.Screen name="Map">
+					{(props) => (
+						<MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />
+					)}
+				</Stack.Screen>
 				<Stack.Screen
 					name="UserType"
 					options={{ title: `Please enter ${userType} details` }}

@@ -10,7 +10,7 @@ import { googleMapsAPI } from "../googleMapsAPI";
 import { postcodeFormatter } from "../utils/utils";
 // import { db } from "../App";
 
-const Register = ({ userType, navigation }) => {
+const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 	const [clientRegisterDetails, setClientRegisterDetails] = useState({
 		name: "",
 		postcode: "",
@@ -111,6 +111,7 @@ const Register = ({ userType, navigation }) => {
 					console.log(error); // NEED TO DISPLAY ERROR.MESSAGE
 				});
 		} else {
+			setLoggedUserPostCode(companyPostcode);
 			auth
 				.createUserWithEmailAndPassword(companyEmail, companyPassword)
 				.then(() => {
