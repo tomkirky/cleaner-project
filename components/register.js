@@ -10,7 +10,7 @@ import { googleMapsAPI } from "../googleMapsAPI";
 import { postcodeFormatter } from "../utils/utils";
 // import { db } from "../App";
 
-const Register = ({ userType, navigation }) => {
+const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 	const [clientRegisterDetails, setClientRegisterDetails] = useState({
 		name: "",
 		postcode: "",
@@ -39,12 +39,6 @@ const Register = ({ userType, navigation }) => {
 
 	const [isLoading, setIsLoading] = useState(false);
 
-	// console.log(postcodeFormatter(clientRegisterDetails.postcode));
-
-	console.log(
-		clientRegisterDetails.weightedHeatMapPoints,
-		"weighted heat map points"
-	);
 	const onRegister = () => {
 		const {
 			name,
@@ -65,13 +59,11 @@ const Register = ({ userType, navigation }) => {
 		} = cleanerRegisterDetails;
 
 		if (userType === "client") {
-			console.log(postcode, "postcode");
 			axios
 				.get(
 					`https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=${googleMapsAPI}`
 				)
 				.then((result) => {
-					console.log(result.data.results[0].geometry.location, "lat & long");
 					const { lat, lng } = result.data.results[0].geometry.location;
 					setIsLoading(true);
 					setClientRegisterDetails((currClientRegisterDetails) => {
@@ -86,7 +78,6 @@ const Register = ({ userType, navigation }) => {
 					});
 					setIsLoading(false);
 				});
-			console.log(weightedHeatMapPoints, "this is after axios request");
 			auth
 				.createUserWithEmailAndPassword(email, password)
 				.then((userCredential) => {
@@ -111,6 +102,7 @@ const Register = ({ userType, navigation }) => {
 					console.log(error); // NEED TO DISPLAY ERROR.MESSAGE
 				});
 		} else {
+			setLoggedUserPostCode(companyPostcode);
 			auth
 				.createUserWithEmailAndPassword(companyEmail, companyPassword)
 				.then(() => {
