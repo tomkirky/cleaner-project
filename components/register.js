@@ -20,10 +20,10 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 		weightedHeatMapPoints: {
 			latitude: 1,
 			longitude: 1,
-			weight: 1
+			weight: 1,
 		},
 		photoURL:
-			"https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png"
+			"https://www.pikpng.com/pngl/m/80-805523_default-avatar-svg-png-icon-free-download-264157.png",
 	});
 
 	const [cleanerRegisterDetails, setCleanerRegisterDetails] = useState({
@@ -34,7 +34,8 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 		companyDescription: "",
 		companyCity: "",
 		cleanerPhotoURL:
-			"http://clipart-library.com/new_gallery/44-448154_cleaning-clipart-worker-window-cleaning-clip-art.png"
+			"http://clipart-library.com/new_gallery/44-448154_cleaning-clipart-worker-window-cleaning-clip-art.png",
+		balance: 0,
 	});
 
 	const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +48,7 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 			password,
 			weightedHeatMapPoints,
 			photoURL,
-			city
+			city,
 		} = clientRegisterDetails;
 		const {
 			companyName,
@@ -56,7 +57,8 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 			companyPassword,
 			companyCity,
 			companyDescription,
-			cleanerPhotoURL
+			cleanerPhotoURL,
+			balance,
 		} = cleanerRegisterDetails;
 
 		if (userType === "client") {
@@ -75,8 +77,8 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 							weightedHeatMapPoints: {
 								latitude: lat,
 								longitude: lng,
-								weight: 1
-							}
+								weight: 1,
+							},
 						};
 					});
 					setIsLoading(false);
@@ -94,7 +96,7 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 						email,
 						weightedHeatMapPoints,
 						photoURL,
-						city
+						city,
 					});
 					navigation.navigate("Home");
 				})
@@ -119,7 +121,8 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 						companyEmail,
 						companyDescription,
 						companyCity,
-						cleanerPhotoURL
+						cleanerPhotoURL,
+						balance,
 					});
 					navigation.navigate("Map");
 				})

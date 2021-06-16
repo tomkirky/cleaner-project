@@ -14,7 +14,6 @@ const CleanersList = ({ setCleaner, navigation }) => {
 	const [currentCity, setCurrentCity] = useState("Leeds");
 	const list = [];
 
-
 	const removeCleaner = () => {
 		db.collection("clients")
 			.doc(auth.currentUser.uid)
@@ -38,7 +37,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 				setCurrCleaner(doc.data());
 				setIsLoading(false);
 			});
-  }, []);
+	}, []);
 
 	const ID = auth.currentUser.uid;
 	const docRef = db.collection("clients").doc(`${ID}`);
@@ -67,8 +66,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 				setCleaners(list);
 				setIsLoading(false);
 			});
-  }, [currentCity]);
-
+	}, [currentCity]);
 
 	if (currCleaner.hasCleaner === true) {
 		return (
@@ -91,62 +89,15 @@ const CleanersList = ({ setCleaner, navigation }) => {
 				</View>
 			</View>
 		);
-	} else {  if (isLoading) {
-		return <Text>Loading...</Text>;
-	} else {
-		return (
-			<View>
-				<Title style={{ padding: 10, alignSelf: "center" }}>
-					Here are all the cleaners in your area
-				</Title>
-				<ScrollView>
-					{cleaners.map((cleaner) => {
-						return (
-							<Pressable
-								onPress={() => {
-									setCleaner(cleaner);
-									navigation.navigate("Profile");
-								}}
-							>
-								<Card>
-									<Avatar.Image
-										size={150}
-										source={{
-											uri: cleaner.cleanerPhotoURL
-										}}
-										style={{ margin: 5, alignSelf: "center" }}
-									/>
-									<Card.Title>{cleaner.companyName}</Card.Title>
-
-									<Card.Divider />
-									<View>
-										<StarRating
-											disabled={true}
-											maxStars={5}
-											rating={3} // rating will be added from db
-											fullStarColor={"gold"}
-											starSize={25}
-											starStyle={{
-												paddingLeft: 20,
-												paddingRight: 20,
-
-												alignSelf: "center"
-											}}
-										/>
-									</View>
-								</Card>
-							</Pressable>
-						);
-					})}
-				</ScrollView>
-			</View>
-		);
 	} else {
 		if (isLoading) {
 			return <Text>Loading...</Text>;
 		} else {
 			return (
 				<View>
+					<Title style={{ padding: 10, alignSelf: "center" }}>
+						Here are all the cleaners in your area
+					</Title>
 					<ScrollView>
 						{cleaners.map((cleaner) => {
 							return (
@@ -157,11 +108,30 @@ const CleanersList = ({ setCleaner, navigation }) => {
 									}}
 								>
 									<Card>
+										<Avatar.Image
+											size={150}
+											source={{
+												uri: cleaner.cleanerPhotoURL,
+											}}
+											style={{ margin: 5, alignSelf: "center" }}
+										/>
 										<Card.Title>{cleaner.companyName}</Card.Title>
+
 										<Card.Divider />
 										<View>
-											<Text>{cleaner.companyDescription}</Text>
-											<Text>{cleaner.companyCity}</Text>
+											<StarRating
+												disabled={true}
+												maxStars={5}
+												rating={3} // rating will be added from db
+												fullStarColor={"gold"}
+												starSize={25}
+												starStyle={{
+													paddingLeft: 20,
+													paddingRight: 20,
+
+													alignSelf: "center",
+												}}
+											/>
 										</View>
 									</Card>
 								</Pressable>
@@ -170,6 +140,36 @@ const CleanersList = ({ setCleaner, navigation }) => {
 					</ScrollView>
 				</View>
 			);
+			// } else {
+			// 	if (isLoading) {
+			// 		return <Text>Loading...</Text>;
+			// 	} else {
+			// 		return (
+			// 			<View>
+			// 				<ScrollView>
+			// 					{cleaners.map((cleaner) => {
+			// 						return (
+			// 							<Pressable
+			// 								onPress={() => {
+			// 									setCleaner(cleaner);
+			// 									navigation.navigate("Profile");
+			// 								}}
+			// 							>
+			// 								<Card>
+			// 									<Card.Title>{cleaner.companyName}</Card.Title>
+			// 									<Card.Divider />
+			// 									<View>
+			// 										<Text>{cleaner.companyDescription}</Text>
+			// 										<Text>{cleaner.companyCity}</Text>
+			// 									</View>
+			// 								</Card>
+			// 							</Pressable>
+			// 						);
+			// 					})}
+			// 				</ScrollView>
+			// 			</View>
+			// 		);
+			// 	}
 		}
 	}
 };
