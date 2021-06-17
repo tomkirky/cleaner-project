@@ -9,7 +9,7 @@ import FancyButton from "./styling/fancyButton";
 const Login = ({ navigation }) => {
 	const [loginDetails, setLoginDetails] = useState({
 		email: "",
-		password: ""
+		password: "",
 	});
 
 	const onSignUp = () => {
@@ -77,23 +77,23 @@ const styles = StyleSheet.create({
 	container: {
 		justifyContent: "center",
 		flex: 1,
-		padding: 20
+		padding: 20,
 		// backgroundColor: "#ffffff"
 	},
 	logo: {
 		width: 250,
 		height: 70,
 		alignSelf: "center",
-		marginBottom: 30
+		marginBottom: 30,
 	},
 	button: {
 		marginLeft: 10,
 		marginRight: 10,
-		marginTop: 15
+		marginTop: 15,
 	},
 	textInput: {
-		marginBottom: 10
-	}
+		marginBottom: 10,
+	},
 });
 
 export default Login;

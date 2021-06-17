@@ -2,9 +2,19 @@ import * as React from "react";
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
+import { db, auth } from "../firebase";
+import firebase from "firebase";
 import FancyButton from "./styling/fancyButton";
 
-const PaymentAmount = ({ navigation, setAmount }) => {
+const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
+	const addPaymentInfoToDB = (number) => {
+		db.collection("cleaners")
+			.doc(cleaner.id)
+			.update({
+				balance: firebase.firestore.FieldValue.increment(number),
+			});
+	};
+
 	return (
 		<View style={styles.container}>
 			<FancyButton
@@ -12,6 +22,7 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("five");
+					addPaymentInfoToDB(5);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -22,6 +33,7 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("ten");
+					addPaymentInfoToDB(10);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -32,6 +44,7 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("fifteen");
+					addPaymentInfoToDB(15);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -42,6 +55,7 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("twenty");
+					addPaymentInfoToDB(20);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -52,6 +66,7 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("twentyfive");
+					addPaymentInfoToDB(25);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -62,6 +77,7 @@ const PaymentAmount = ({ navigation, setAmount }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("thirty");
+					addPaymentInfoToDB(30);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -75,9 +91,9 @@ const styles = StyleSheet.create({
 	container: {
 		justifyContent: "center",
 		flex: 1,
-		padding: 20
+		padding: 20,
 		// backgroundColor: "#ffffff"
-	}
+	},
 });
 
 export default PaymentAmount;

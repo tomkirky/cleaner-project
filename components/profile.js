@@ -16,14 +16,30 @@ const Profile = ({ cleaner, navigation }) => {
 		setTotalRating((rating + totalRating) / 2);
 	};
 
+	console.log(auth.currentUser.uid);
+
+	const submitCleaner = () => {
+		db.collection("clients").doc(auth.currentUser.uid).update({
+			hasCleaner: true,
+			currentCleaner: cleaner.companyName,
+			dateOfPayment: new Date(),
+		});
+		db.collection("cleaners")
+			.doc(cleaner.id)
+			.update({
+				numberOfJobs: firebase.firestore.FieldValue.increment(1),
+			});
+		console.log("this has run");
+	};
+
 	return (
 		<View>
 			<Avatar.Image
 				size={150}
 				source={{
 					uri:
-						cleaner.photoURL ||
-						"http://clipart-library.com/new_gallery/44-448154_cleaning-clipart-worker-window-cleaning-clip-art.png "
+						cleaner.cleanerPhotoURL ||
+						"http://clipart-library.com/new_gallery/44-448154_cleaning-clipart-worker-window-cleaning-clip-art.png ",
 				}}
 				style={{ margin: 25, alignSelf: "center" }}
 			/>
@@ -64,7 +80,10 @@ const Profile = ({ cleaner, navigation }) => {
 				mode="contained"
 				color="green"
 				style={{ padding: 10, justifyContent: "center", margin: 10 }}
-				onPress={() => navigation.navigate("PaymentAmount")}
+				onPress={() => {
+					submitCleaner();
+					navigation.navigate("PaymentAmount");
+				}}
 			>
 				Pay {cleaner.companyName}
 			</Button>
