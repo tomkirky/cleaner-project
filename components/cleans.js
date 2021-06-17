@@ -2,7 +2,7 @@ import { db, auth } from "../firebase";
 import firebase from "firebase";
 import { Card } from "react-native-elements";
 import React from "react";
-import { View, Pressable, ScrollView } from "react-native";
+import { View, Pressable, ScrollView, ActivityIndicator } from "react-native";
 import { Button, Title, Text, Avatar } from "react-native-paper";
 import { useState, useEffect } from "react";
 import StarRating from "react-native-star-rating";
@@ -24,9 +24,11 @@ const Cleans = () => {
 	console.log(cleanerDetails);
 	if (isLoading) {
 		return (
-			<View style={{ marginTop: 50 }}>
-				<Text>Loading</Text>
-			</View>
+			<ActivityIndicator
+				style={{ marginTop: 50 }}
+				size="large"
+				color="#2192BC"
+			/>
 		);
 	} else {
 		return (

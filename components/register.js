@@ -5,7 +5,7 @@ import firebase from "firebase";
 import { useEffect } from "react";
 import { db, auth } from "../firebase";
 import axios from "axios";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, ActivityIndicator } from "react-native";
 import { googleMapsAPI } from "../googleMapsAPI";
 import { postcodeFormatter } from "../utils/utils";
 // import { db } from "../App";
@@ -153,7 +153,13 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 	// }, []);
 	////////////////////////////////////
 	if (isLoading) {
-		return <Text style={{ marginTop: 50 }}>...loading</Text>;
+		return (
+			<ActivityIndicator
+				style={{ marginTop: 50 }}
+				size="large"
+				color="#2192BC"
+			/>
+		);
 	} else if (userType === "client") {
 		return (
 			<ClientSignupForm

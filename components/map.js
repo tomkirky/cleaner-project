@@ -1,7 +1,13 @@
 import * as React from "react";
 import MapView from "react-native-maps";
 import { Heatmap, Callout, TouchableOpacity } from "react-native-maps";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	Dimensions,
+	ActivityIndicator,
+} from "react-native";
 import axios from "axios";
 import { googleMapsAPI } from "../googleMapsAPI";
 import { useState, useEffect } from "react";
@@ -51,7 +57,13 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 	}, []);
 
 	if (isGoogleLoading || isFirebaseLoading) {
-		return <Text style={{ marginTop: 50 }}>...loading</Text>;
+		return (
+			<ActivityIndicator
+				style={{ marginTop: 50 }}
+				size="large"
+				color="#2192BC"
+			/>
+		);
 	} else {
 		return (
 			<View style={styles.container}>
