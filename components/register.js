@@ -98,7 +98,7 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 						photoURL,
 						city,
 					});
-					navigation.navigate("Home");
+					navigation.navigate("HomeTabs");
 				})
 				.catch((error) => {
 					if (error.code === "auth/invalid-email") {
