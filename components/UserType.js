@@ -59,12 +59,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		// backgroundColor: "#fff",
 		// alignItems: "center",
-		justifyContent: "center"
+		justifyContent: "center",
+		marginTop: 50,
 	},
 	button: {
 		marginLeft: 10,
 		marginRight: 10,
-		marginBottom: 80
+		marginBottom: 80,
 		// marginTop: 15
-	}
+	},
 });

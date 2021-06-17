@@ -21,7 +21,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 			.update({
 				hasCleaner: false,
 				currentCleaner: "",
-				dateOfPayment: ""
+				dateOfPayment: "",
 			})
 			.then(() => {
 				setCurrCleaner((currCleaner) => {
@@ -71,11 +71,11 @@ const CleanersList = ({ setCleaner, navigation }) => {
 
 	if (currCleaner.hasCleaner === true) {
 		return (
-			<View>
+			<View style={{ marginTop: 50 }}>
 				<Avatar.Image
 					size={150}
 					source={{
-						uri: currCleaner.photoURL
+						uri: currCleaner.photoURL,
 					}}
 					style={{ margin: 25, alignSelf: "center" }}
 				/>
@@ -109,10 +109,10 @@ const CleanersList = ({ setCleaner, navigation }) => {
 		);
 	} else {
 		if (isLoading) {
-			return <Text>Loading...</Text>;
+			return <Text style={{ marginTop: 50 }}>Loading...</Text>;
 		} else {
 			return (
-				<View>
+				<View style={{ marginTop: 50 }}>
 					<Title style={{ padding: 10, alignSelf: "center" }}>
 						Here are all the cleaners in your area
 					</Title>
@@ -129,7 +129,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 										<Avatar.Image
 											size={150}
 											source={{
-												uri: cleaner.cleanerPhotoURL
+												uri: cleaner.cleanerPhotoURL,
 											}}
 											style={{ margin: 5, alignSelf: "center" }}
 										/>
@@ -147,7 +147,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 													paddingLeft: 20,
 													paddingRight: 20,
 
-													alignSelf: "center"
+													alignSelf: "center",
 												}}
 											/>
 										</View>

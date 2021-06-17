@@ -24,7 +24,7 @@ const Cleans = () => {
 	console.log(cleanerDetails);
 	if (isLoading) {
 		return (
-			<View>
+			<View style={{ marginTop: 50 }}>
 				<Text>Loading</Text>
 			</View>
 		);
@@ -35,6 +35,7 @@ const Cleans = () => {
 					justifyContent: "center",
 					flex: 1,
 					padding: 20,
+					marginTop: 50,
 				}}
 			>
 				<Avatar.Image

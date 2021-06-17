@@ -17,7 +17,7 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 
 	const [coordinates, setCoordinates] = useState({
 		lat: 51.4444784,
-		lng: -0.1599027
+		lng: -0.1599027,
 	});
 
 	useEffect(() => {
@@ -51,7 +51,7 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 	}, []);
 
 	if (isGoogleLoading || isFirebaseLoading) {
-		return <Text>...loading</Text>;
+		return <Text style={{ marginTop: 50 }}>...loading</Text>;
 	} else {
 		return (
 			<View style={styles.container}>
@@ -61,7 +61,7 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 						latitude: coordinates.lat,
 						longitude: coordinates.lng,
 						latitudeDelta: 0.07,
-						longitudeDelta: 0.07
+						longitudeDelta: 0.07,
 					}}
 				>
 					<Heatmap
@@ -93,11 +93,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#fff",
 		alignItems: "center",
-		justifyContent: "center"
+		justifyContent: "center",
+		marginTop: 50,
 	},
 	map: {
 		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height
+		height: Dimensions.get("window").height,
 	},
 	buttonCallout: {
 		flex: 1,
@@ -108,16 +109,16 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		backgroundColor: "transparent",
 		borderWidth: 0.5,
-		borderRadius: 20
+		borderRadius: 20,
 	},
 	touchable: {
 		backgroundColor: "lightblue",
 		padding: 10,
-		margin: 10
+		margin: 10,
 	},
 	touchableText: {
-		fontSize: 24
-	}
+		fontSize: 24,
+	},
 });
 
 export default Map;

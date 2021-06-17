@@ -153,7 +153,7 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 	// }, []);
 	////////////////////////////////////
 	if (isLoading) {
-		return <Text>...loading</Text>;
+		return <Text style={{ marginTop: 50 }}>...loading</Text>;
 	} else if (userType === "client") {
 		return (
 			<ClientSignupForm

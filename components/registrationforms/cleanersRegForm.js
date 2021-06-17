@@ -5,7 +5,7 @@ import FancyButton from "../styling/fancyButton";
 
 export const CleanerSignupForm = ({
 	setCleanerRegisterDetails,
-	onRegister
+	onRegister,
 }) => {
 	return (
 		<View style={styles.container}>
@@ -14,7 +14,6 @@ export const CleanerSignupForm = ({
 			</Title>
 			<ScrollView>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Name"
 					onChangeText={(event) =>
@@ -24,7 +23,6 @@ export const CleanerSignupForm = ({
 					}
 				/>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Postcode"
 					onChangeText={(event) =>
@@ -35,7 +33,6 @@ export const CleanerSignupForm = ({
 				/>
 
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="City"
 					onChangeText={(event) =>
@@ -46,7 +43,6 @@ export const CleanerSignupForm = ({
 				/>
 
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Email"
 					onChangeText={(event) =>
@@ -56,7 +52,6 @@ export const CleanerSignupForm = ({
 					}
 				/>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Password"
 					secureTextEntry={true}
@@ -67,7 +62,6 @@ export const CleanerSignupForm = ({
 					}
 				/>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Briefly describe your company..."
 					onChangeText={(event) =>
@@ -77,7 +71,6 @@ export const CleanerSignupForm = ({
 					}
 				/>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="AvatarURL"
 					onChangeText={(event) =>
@@ -99,15 +92,16 @@ const styles = StyleSheet.create({
 	container: {
 		justifyContent: "center",
 		flex: 1,
-		padding: 20
+		padding: 20,
+		marginTop: 50,
 		// backgroundColor: "#ffffff"
 	},
 	button: {
 		marginLeft: 10,
 		marginRight: 10,
-		marginTop: 15
+		marginTop: 15,
 	},
 	textInput: {
-		marginBottom: 5
-	}
+		marginBottom: 5,
+	},
 });

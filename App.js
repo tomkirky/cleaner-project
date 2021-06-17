@@ -100,15 +100,22 @@ const App = ({ navigation }) => {
 						<Stack.Screen
 							name="Logo"
 							component={LogoScreen}
-							options={{ cardStyle: { backgroundColor: "#FFFFFF" }, title: "" }}
+							options={{
+								cardStyle: { backgroundColor: "#FFFFFF" },
+								headerShown: false,
+							}}
 						/>
-						<Stack.Screen name="Login" component={LoginScreen} />
+						<Stack.Screen
+							name="Login"
+							component={LoginScreen}
+							options={{ headerShown: false }}
+						/>
 						<Stack.Screen
 							name="Landing"
 							component={LandingScreen}
 							options={{ headerShown: false }}
 						/>
-						<Stack.Screen name="Register" options={{ title: "" }}>
+						<Stack.Screen name="Register" options={{ headerShown: false }}>
 							{(props) => (
 								<RegisterScreen
 									{...props}
@@ -118,11 +125,16 @@ const App = ({ navigation }) => {
 								/>
 							)}
 						</Stack.Screen>
-						<Stack.Screen name="Cleaners" component={CleanersList} />
+						<Stack.Screen
+							name="Cleaners"
+							component={CleanersList}
+							options={{ headerShown: false }}
+						/>
 						<Stack.Screen
 							name="HomeTabs"
 							options={({ route }) => ({
-								headerTitle: getHeaderTitle(route)
+								headerTitle: getHeaderTitle(route),
+								headerShown: false,
 							})}
 						>
 							{(props) => (
@@ -133,16 +145,20 @@ const App = ({ navigation }) => {
 								/>
 							)}
 						</Stack.Screen>
-						<Stack.Screen name="Home" component={HomeScreen} />
-						<Stack.Screen name="Payments">
+						<Stack.Screen
+							name="Home"
+							component={HomeScreen}
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen name="Payments" options={{ headerShown: false }}>
 							{(props) => <PaymentScreen {...props} amount={amount} />}
 						</Stack.Screen>
-						<Stack.Screen name="Map">
+						<Stack.Screen name="Map" options={{ headerShown: false }}>
 							{(props) => (
 								<MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />
 							)}
 						</Stack.Screen>
-						<Stack.Screen name="PaymentAmount">
+						<Stack.Screen name="PaymentAmount" options={{ headerShown: false }}>
 							{(props) => (
 								<PaymentAmount
 									{...props}
@@ -153,7 +169,10 @@ const App = ({ navigation }) => {
 						</Stack.Screen>
 						<Stack.Screen
 							name="UserType"
-							options={{ title: `Please enter ${userType} details` }}
+							options={{
+								title: `Please enter ${userType} details`,
+								headerShown: false,
+							}}
 						>
 							{(props) => (
 								<UserType
@@ -163,10 +182,14 @@ const App = ({ navigation }) => {
 								/>
 							)}
 						</Stack.Screen>
-						<Stack.Screen name="Profile">
+						<Stack.Screen name="Profile" options={{ headerShown: false }}>
 							{(props) => <Profile {...props} cleaner={cleaner} />}
 						</Stack.Screen>
-						<Stack.Screen name="Cleans" component={Cleans} />
+						<Stack.Screen
+							name="Cleans"
+							component={Cleans}
+							options={{ headerShown: false }}
+						/>
 					</Stack.Navigator>
 				</NavigationContainer>
 			</CleanerContext.Provider>

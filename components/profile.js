@@ -33,7 +33,7 @@ const Profile = ({ cleaner, navigation }) => {
 	};
 
 	return (
-		<View>
+		<View style={{ marginTop: 50 }}>
 			<Avatar.Image
 				size={150}
 				source={{

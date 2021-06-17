@@ -19,7 +19,7 @@ const Home = ({ navigation }) => {
 	});
 
 	return (
-		<View>
+		<View style={{ marginTop: 50 }}>
 			<Text>Welcome!</Text>
 			<Button title="Log Out" onPress={logOut} />
 		</View>

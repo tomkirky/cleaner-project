@@ -11,7 +11,6 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 			</Title>
 			<ScrollView>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Name"
 					onChangeText={(event) =>
@@ -21,7 +20,6 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 					}
 				/>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Postcode"
 					onChangeText={(event) =>
@@ -31,7 +29,6 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 					}
 				/>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Email"
 					onChangeText={(event) =>
@@ -41,7 +38,6 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 					}
 				/>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Password"
 					secureTextEntry={true}
@@ -52,7 +48,6 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 					}
 				/>
 				<TextInput
-					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="AvatarURL"
 					onChangeText={(event) =>
@@ -73,15 +68,16 @@ const styles = StyleSheet.create({
 	container: {
 		justifyContent: "center",
 		flex: 1,
-		padding: 20
+		padding: 20,
+		marginTop: 50,
 		// backgroundColor: "#ffffff"
 	},
 	button: {
 		marginLeft: 10,
 		marginRight: 10,
-		marginTop: 15
+		marginTop: 15,
 	},
 	textInput: {
-		marginBottom: 5
-	}
+		marginBottom: 5,
+	},
 });

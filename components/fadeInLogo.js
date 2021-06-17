@@ -8,7 +8,7 @@ const FadeInLogo = (props) => {
 		Animated.timing(fadeAnim, {
 			toValue: 1,
 			duration: 8000,
-			useNativeDriver: false
+			useNativeDriver: false,
 		}).start();
 	}, [fadeAnim]);
 
@@ -16,7 +16,8 @@ const FadeInLogo = (props) => {
 		<Animated.View // Special animatable View
 			style={{
 				...props.style,
-				opacity: fadeAnim // Bind opacity to animated value
+				opacity: fadeAnim, // Bind opacity to animated value
+				marginTop: 50,
 			}}
 		>
 			{props.children}

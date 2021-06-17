@@ -15,7 +15,7 @@ const LogoScreen = ({ navigation }) => {
 				flex: 1,
 				alignItems: "center",
 				justifyContent: "center",
-				paddingTop: 150
+				paddingTop: 200,
 			}}
 		>
 			<FadeInLogo style={{ width: 300, height: 500 }}>
@@ -24,7 +24,7 @@ const LogoScreen = ({ navigation }) => {
 						width: 400,
 						height: 250,
 
-						alignSelf: "center"
+						alignSelf: "center",
 					}}
 					source={require("../img/clean(2).png")}
 				/>

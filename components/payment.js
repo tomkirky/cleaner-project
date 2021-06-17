@@ -14,6 +14,7 @@ const Payment = ({ navigation, amount }) => {
 
 	return (
 		<WebView
+			style={{ marginTop: 50 }}
 			source={{
 				uri: paymentAmounts[amount],
 			}}
