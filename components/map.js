@@ -11,7 +11,7 @@ import { Button } from "react-native";
 const Map = ({ loggedUserPostCode, navigation }) => {
 	let heatmapPoints = [];
 	const [points, setPoints] = useState([]);
-	const [isGoogleLoading, setIsGoogleLoading] = useState(true);	
+	const [isGoogleLoading, setIsGoogleLoading] = useState(true);
 	const [isFirebaseLoading, setIsFirebaseLoading] = useState(true);
 
 	const [coordinates, setCoordinates] = useState({
@@ -48,7 +48,6 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 			});
 	}, []);
 
-
 	if (isGoogleLoading || isFirebaseLoading) {
 		return <Text>...loading</Text>;
 	} else {
@@ -73,11 +72,13 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 					/>
 				</MapView>
 				<Callout style={styles.buttonCallout}>
-					<Button title="Continue"onPress = {() => {
-						navigation.navigate("Landing")
-					}}>
-					</Button>
-        </Callout>
+					<Button
+						title="Continue"
+						onPress={() => {
+							navigation.navigate("Cleans");
+						}}
+					></Button>
+				</Callout>
 			</View>
 		);
 	}
@@ -96,24 +97,23 @@ const styles = StyleSheet.create({
 	},
 	buttonCallout: {
 		flex: 1,
-		flexDirection:'row',
-		position:'absolute',
-		bottom:10,
+		flexDirection: "row",
+		position: "absolute",
+		bottom: 10,
 		alignSelf: "center",
 		justifyContent: "space-between",
 		backgroundColor: "transparent",
 		borderWidth: 0.5,
-		borderRadius: 20
-	  },
-	  touchable: {
+		borderRadius: 20,
+	},
+	touchable: {
 		backgroundColor: "lightblue",
 		padding: 10,
-		margin: 10
-	  },
-	  touchableText: {
-		fontSize: 24
-
-	  }
+		margin: 10,
+	},
+	touchableText: {
+		fontSize: 24,
+	},
 });
 
 export default Map;

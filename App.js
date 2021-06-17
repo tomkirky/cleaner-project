@@ -24,6 +24,7 @@ import Profile from "./components/profile";
 import { useState } from "react";
 import PaymentAmount from "./components/PaymentAmount";
 import Navbar from "./components/navbar";
+import Cleans from "./components/cleans";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
@@ -108,7 +109,9 @@ const App = ({ navigation }) => {
 							{(props) => <PaymentScreen {...props} amount={amount} />}
 						</Stack.Screen>
 						<Stack.Screen name="Map">
-							{(props) => <MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />}
+							{(props) => (
+								<MapScreen {...props} loggedUserPostCode={loggedUserPostCode} />
+							)}
 						</Stack.Screen>
 						<Stack.Screen name="PaymentAmount">
 							{(props) => (
@@ -134,6 +137,7 @@ const App = ({ navigation }) => {
 						<Stack.Screen name="Profile">
 							{(props) => <Profile {...props} cleaner={cleaner} />}
 						</Stack.Screen>
+						<Stack.Screen name="Cleans" component={Cleans} />
 					</Stack.Navigator>
 				</NavigationContainer>
 			</CleanerContext.Provider>
