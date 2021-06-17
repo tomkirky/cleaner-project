@@ -7,7 +7,8 @@ const FadeInLogo = (props) => {
 	React.useEffect(() => {
 		Animated.timing(fadeAnim, {
 			toValue: 1,
-			duration: 8000
+			duration: 8000,
+			useNativeDriver: false
 		}).start();
 	}, [fadeAnim]);
 

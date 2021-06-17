@@ -5,6 +5,7 @@ import { Button, Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { CleanerContext } from "./contexts/Cleaner";
+import { auth } from "./firebase";
 
 // import * as firebase from "firebase";
 // if (firebase.apps.length === 0) {
@@ -50,15 +51,23 @@ export const HomeTabs = ({ navigation, setCleaner, cleaner }) => {
 	console.log(auth.currentUser.uid);
 	if (auth.currentUser.uid !== "9PItny4p8CSXhAsuiVAnyvIdClE2") {
 		return (
-			<Tab.Navigator>
-				<Tab.Screen name="Cleans" component={Cleans} />
-				<Tab.Screen name="Chat" component={ChatScreen} />
+			<Tab.Navigator barStyle={{ backgroundColor: "#2192BC" }}>
+				<Tab.Screen
+					options={{ tabBarIcon: "pail-outline" }}
+					name="Cleans"
+					component={Cleans}
+				/>
+				<Tab.Screen
+					options={{ tabBarIcon: "chat-outline" }}
+					name="Chat"
+					component={ChatScreen}
+				/>
 			</Tab.Navigator>
 		);
 	} else {
 		return (
-			<Tab.Navigator>
-				<Tab.Screen name="Cleaners">
+			<Tab.Navigator barStyle={{ backgroundColor: "#2192BC" }}>
+				<Tab.Screen options={{ tabBarIcon: "pail-outline" }} name="Cleaners">
 					{(props) => (
 						<CleanersList
 							{...props}
@@ -67,7 +76,11 @@ export const HomeTabs = ({ navigation, setCleaner, cleaner }) => {
 						/>
 					)}
 				</Tab.Screen>
-				<Tab.Screen name="Chat" component={ChatScreen} />
+				<Tab.Screen
+					options={{ tabBarIcon: "chat-outline" }}
+					name="Chat"
+					component={ChatScreen}
+				/>
 			</Tab.Navigator>
 		);
 	}
