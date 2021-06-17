@@ -27,6 +27,7 @@ import Navbar from "./components/navbar";
 import Cleans from "./components/cleans";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import LogoScreen from "./components/logoScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -73,7 +74,12 @@ const App = ({ navigation }) => {
 		<>
 			<CleanerContext.Provider value={{ cleaner, setCleaner }}>
 				<NavigationContainer>
-					<Stack.Navigator initialRouteName="Login">
+					<Stack.Navigator initialRouteName="Logo">
+						<Stack.Screen
+							name="Logo"
+							component={LogoScreen}
+							options={{ cardStyle: { backgroundColor: "#FFFFFF" }, title: "" }}
+						/>
 						<Stack.Screen name="Login" component={LoginScreen} />
 						<Stack.Screen
 							name="Landing"
