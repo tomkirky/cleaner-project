@@ -6,17 +6,18 @@ import axios from "axios";
 import { googleMapsAPI } from "../googleMapsAPI";
 import { useState, useEffect } from "react";
 import firebase from "firebase";
-import { Button } from "react-native";
+// import { Button } from "react-native";
+import FancyButton from "./styling/fancyButton";
 
 const Map = ({ loggedUserPostCode, navigation }) => {
 	let heatmapPoints = [];
 	const [points, setPoints] = useState([]);
-	const [isGoogleLoading, setIsGoogleLoading] = useState(true);	
+	const [isGoogleLoading, setIsGoogleLoading] = useState(true);
 	const [isFirebaseLoading, setIsFirebaseLoading] = useState(true);
 
 	const [coordinates, setCoordinates] = useState({
 		lat: 51.4444784,
-		lng: -0.1599027,
+		lng: -0.1599027
 	});
 
 	useEffect(() => {
@@ -40,6 +41,7 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 				`https://maps.googleapis.com/maps/api/geocode/json?address=${loggedUserPostCode}&key=${googleMapsAPI}`
 			)
 			.then((result) => {
+				console.log(result);
 				const { lat, lng } = result.data.results[0].geometry.location;
 				setIsGoogleLoading(false);
 				setCoordinates((currCoordinates) => {
@@ -47,7 +49,6 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 				});
 			});
 	}, []);
-
 
 	if (isGoogleLoading || isFirebaseLoading) {
 		return <Text>...loading</Text>;
@@ -60,7 +61,7 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 						latitude: coordinates.lat,
 						longitude: coordinates.lng,
 						latitudeDelta: 0.07,
-						longitudeDelta: 0.07,
+						longitudeDelta: 0.07
 					}}
 				>
 					<Heatmap
@@ -73,11 +74,15 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 					/>
 				</MapView>
 				<Callout style={styles.buttonCallout}>
-					<Button title="Continue"onPress = {() => {
-						navigation.navigate("Landing")
-					}}>
-					</Button>
-        </Callout>
+					<FancyButton
+						title="Continue to jobs"
+						onPress={() => {
+							navigation.navigate("Cleans");
+						}}
+					>
+						Continue to your jobs
+					</FancyButton>
+				</Callout>
 			</View>
 		);
 	}
@@ -88,32 +93,31 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#fff",
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "center"
 	},
 	map: {
 		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height,
+		height: Dimensions.get("window").height
 	},
 	buttonCallout: {
 		flex: 1,
-		flexDirection:'row',
-		position:'absolute',
-		bottom:10,
+		flexDirection: "row",
+		position: "absolute",
+		bottom: 10,
 		alignSelf: "center",
 		justifyContent: "space-between",
 		backgroundColor: "transparent",
 		borderWidth: 0.5,
 		borderRadius: 20
-	  },
-	  touchable: {
+	},
+	touchable: {
 		backgroundColor: "lightblue",
 		padding: 10,
 		margin: 10
-	  },
-	  touchableText: {
+	},
+	touchableText: {
 		fontSize: 24
-
-	  }
+	}
 });
 
 export default Map;

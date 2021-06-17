@@ -7,19 +7,13 @@ import firebase from "firebase";
 import FancyButton from "./styling/fancyButton";
 
 const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
-	const [money, setMoney] = useState();
-
-	const addPaymentInfoToDB = () => {
-		const inc = money;
+	const addPaymentInfoToDB = (number) => {
 		db.collection("cleaners")
 			.doc(cleaner.id)
 			.update({
-				balance: firebase.firestore.FieldValue.increment(Number(inc)),
+				balance: firebase.firestore.FieldValue.increment(number),
 			});
 	};
-
-
-
 
 	return (
 		<View style={styles.container}>
@@ -28,8 +22,7 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("five");
-					setMoney(5);
-					addPaymentInfoToDB();
+					addPaymentInfoToDB(5);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -40,8 +33,7 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("ten");
-					setMoney(10);
-					addPaymentInfoToDB();
+					addPaymentInfoToDB(10);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -52,8 +44,7 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("fifteen");
-					setMoney(15);
-					addPaymentInfoToDB();
+					addPaymentInfoToDB(15);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -64,8 +55,7 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("twenty");
-					setMoney(20);
-					addPaymentInfoToDB();
+					addPaymentInfoToDB(20);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -76,8 +66,7 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("twentyfive");
-					setMoney(25);
-					addPaymentInfoToDB();
+					addPaymentInfoToDB(25);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -88,8 +77,7 @@ const PaymentAmount = ({ navigation, setAmount, cleaner }) => {
 				mode="contained"
 				onPress={() => {
 					setAmount("thirty");
-					setMoney(30);
-					addPaymentInfoToDB();
+					addPaymentInfoToDB(30);
 					navigation.navigate("Payments");
 				}}
 			>
@@ -103,9 +91,9 @@ const styles = StyleSheet.create({
 	container: {
 		justifyContent: "center",
 		flex: 1,
-		padding: 20
+		padding: 20,
 		// backgroundColor: "#ffffff"
-	}
+	},
 });
 
 export default PaymentAmount;

@@ -122,7 +122,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 											<StarRating
 												disabled={true}
 												maxStars={5}
-												rating={3} // rating will be added from db
+												rating={cleaner.rating}
 												fullStarColor={"gold"}
 												starSize={25}
 												starStyle={{
@@ -137,6 +137,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 								</Pressable>
 							);
 						})}
+						<View style={{ marginBottom: 70 }} />
 					</ScrollView>
 				</View>
 			);

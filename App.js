@@ -24,8 +24,10 @@ import Profile from "./components/profile";
 import { useState } from "react";
 import PaymentAmount from "./components/PaymentAmount";
 import Navbar from "./components/navbar";
+import Cleans from "./components/cleans";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import LogoScreen from "./components/logoScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -47,13 +49,17 @@ function getHeaderTitle(route) {
 export const HomeTabs = ({ navigation, setCleaner, cleaner }) => {
 	console.log(cleaner, setCleaner);
 	return (
-		<Tab.Navigator>
-			<Tab.Screen name="Cleaners">
+		<Tab.Navigator barStyle={{ backgroundColor: "#2192BC" }}>
+			<Tab.Screen name="Cleaners" options={{ tabBarIcon: "pail-outline" }}>
 				{(props) => (
 					<CleanersList {...props} setCleaner={setCleaner} cleaner={cleaner} />
 				)}
 			</Tab.Screen>
-			<Tab.Screen name="Chat" component={ChatScreen} />
+			<Tab.Screen
+				name="Chat"
+				component={ChatScreen}
+				options={{ tabBarIcon: "chat-outline" }}
+			/>
 		</Tab.Navigator>
 	);
 };
@@ -68,7 +74,12 @@ const App = ({ navigation }) => {
 		<>
 			<CleanerContext.Provider value={{ cleaner, setCleaner }}>
 				<NavigationContainer>
-					<Stack.Navigator initialRouteName="Login">
+					<Stack.Navigator initialRouteName="Logo">
+						<Stack.Screen
+							name="Logo"
+							component={LogoScreen}
+							options={{ cardStyle: { backgroundColor: "#FFFFFF" }, title: "" }}
+						/>
 						<Stack.Screen name="Login" component={LoginScreen} />
 						<Stack.Screen
 							name="Landing"
@@ -133,6 +144,7 @@ const App = ({ navigation }) => {
 						<Stack.Screen name="Profile">
 							{(props) => <Profile {...props} cleaner={cleaner} />}
 						</Stack.Screen>
+						<Stack.Screen name="Cleans" component={Cleans} />
 					</Stack.Navigator>
 				</NavigationContainer>
 			</CleanerContext.Provider>
