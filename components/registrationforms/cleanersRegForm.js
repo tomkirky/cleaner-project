@@ -14,6 +14,7 @@ export const CleanerSignupForm = ({
 			</Title>
 			<ScrollView>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Name"
 					onChangeText={(event) =>
@@ -23,6 +24,7 @@ export const CleanerSignupForm = ({
 					}
 				/>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Postcode"
 					onChangeText={(event) =>
@@ -33,6 +35,7 @@ export const CleanerSignupForm = ({
 				/>
 
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="City"
 					onChangeText={(event) =>
@@ -43,6 +46,7 @@ export const CleanerSignupForm = ({
 				/>
 
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Email"
 					onChangeText={(event) =>
@@ -52,6 +56,7 @@ export const CleanerSignupForm = ({
 					}
 				/>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Password"
 					secureTextEntry={true}
@@ -62,6 +67,7 @@ export const CleanerSignupForm = ({
 					}
 				/>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Briefly describe your company..."
 					onChangeText={(event) =>
@@ -71,6 +77,7 @@ export const CleanerSignupForm = ({
 					}
 				/>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="AvatarURL"
 					onChangeText={(event) =>

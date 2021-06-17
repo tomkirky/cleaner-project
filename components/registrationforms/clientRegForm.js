@@ -11,6 +11,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 			</Title>
 			<ScrollView>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Name"
 					onChangeText={(event) =>
@@ -20,6 +21,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 					}
 				/>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Postcode"
 					onChangeText={(event) =>
@@ -29,6 +31,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 					}
 				/>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Email"
 					onChangeText={(event) =>
@@ -38,6 +41,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 					}
 				/>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="Password"
 					secureTextEntry={true}
@@ -48,6 +52,7 @@ export const ClientSignupForm = ({ setClientRegisterDetails, onRegister }) => {
 					}
 				/>
 				<TextInput
+					theme={{ colors: { primary: "colors" } }}
 					style={styles.textInput}
 					label="AvatarURL"
 					onChangeText={(event) =>
