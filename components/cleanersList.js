@@ -137,39 +137,10 @@ const CleanersList = ({ setCleaner, navigation }) => {
 								</Pressable>
 							);
 						})}
+						<View style={{ marginBottom: 70 }} />
 					</ScrollView>
 				</View>
 			);
-			// } else {
-			// 	if (isLoading) {
-			// 		return <Text>Loading...</Text>;
-			// 	} else {
-			// 		return (
-			// 			<View>
-			// 				<ScrollView>
-			// 					{cleaners.map((cleaner) => {
-			// 						return (
-			// 							<Pressable
-			// 								onPress={() => {
-			// 									setCleaner(cleaner);
-			// 									navigation.navigate("Profile");
-			// 								}}
-			// 							>
-			// 								<Card>
-			// 									<Card.Title>{cleaner.companyName}</Card.Title>
-			// 									<Card.Divider />
-			// 									<View>
-			// 										<Text>{cleaner.companyDescription}</Text>
-			// 										<Text>{cleaner.companyCity}</Text>
-			// 									</View>
-			// 								</Card>
-			// 							</Pressable>
-			// 						);
-			// 					})}
-			// 				</ScrollView>
-			// 			</View>
-			// 		);
-			// 	}
 		}
 	}
 };

@@ -77,7 +77,7 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 					<FancyButton
 						title="Continue to jobs"
 						onPress={() => {
-							navigation.navigate("Landing");
+							navigation.navigate("Cleans");
 						}}
 					>
 						Continue to your jobs
