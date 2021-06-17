@@ -48,13 +48,17 @@ function getHeaderTitle(route) {
 export const HomeTabs = ({ navigation, setCleaner, cleaner }) => {
 	console.log(cleaner, setCleaner);
 	return (
-		<Tab.Navigator>
-			<Tab.Screen name="Cleaners">
+		<Tab.Navigator barStyle={{ backgroundColor: "#2192BC" }}>
+			<Tab.Screen name="Cleaners" options={{ tabBarIcon: "pail-outline" }}>
 				{(props) => (
 					<CleanersList {...props} setCleaner={setCleaner} cleaner={cleaner} />
 				)}
 			</Tab.Screen>
-			<Tab.Screen name="Chat" component={ChatScreen} />
+			<Tab.Screen
+				name="Chat"
+				component={ChatScreen}
+				options={{ tabBarIcon: "chat-outline" }}
+			/>
 		</Tab.Navigator>
 	);
 };
@@ -93,7 +97,7 @@ const App = ({ navigation }) => {
 						<Stack.Screen
 							name="HomeTabs"
 							options={({ route }) => ({
-								headerTitle: getHeaderTitle(route),
+								headerTitle: getHeaderTitle(route)
 							})}
 						>
 							{(props) => (
