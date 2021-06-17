@@ -137,6 +137,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 								</Pressable>
 							);
 						})}
+						<View style={{ marginBottom: 70 }} />
 					</ScrollView>
 				</View>
 			);
