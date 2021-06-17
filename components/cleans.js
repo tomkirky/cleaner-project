@@ -30,27 +30,41 @@ const Cleans = () => {
 		);
 	} else {
 		return (
-			<View>
+			<View
+				style={{
+					justifyContent: "center",
+					flex: 1,
+					padding: 20,
+				}}
+			>
 				<Avatar.Image
 					size={150}
 					source={{
 						uri: cleanerDetails.cleanerPhotoURL,
 					}}
-					style={{ margin: 5, alignSelf: "center" }}
+					style={{ margin: 25, alignSelf: "center" }}
 				/>
-				<Text>Hello {cleanerDetails.companyName}</Text>
-				<Text>Current cleans</Text>
-				<Text>
+				<Title style={{ padding: 10, alignSelf: "center" }}>
+					Hello {cleanerDetails.companyName}
+				</Title>
+				<Title style={{ padding: 10, alignSelf: "center" }}>
+					Current Cleans
+				</Title>
+				<Text style={{ padding: 10, alignSelf: "center" }}>
 					You currently have {cleanerDetails.numberOfJobs || 0} clients
 				</Text>
-				<Text>You have been paid £{cleanerDetails.balance}</Text>
-				<Text>Location: {cleanerDetails.companyCity}</Text>
+				<Text style={{ padding: 10, alignSelf: "center" }}>
+					You have been paid £{cleanerDetails.balance}
+				</Text>
+				<Text style={{ padding: 10, marginBottom: 25, alignSelf: "center" }}>
+					Location: {cleanerDetails.companyCity}
+				</Text>
 				<StarRating
 					disabled={true}
 					maxStars={5}
 					rating={cleanerDetails.rating}
 					fullStarColor={"gold"}
-					starStyle={{ paddingLeft: 20, paddingRight: 20, alignSelf: "center" }}
+					starStyle={{ paddingLeft: 15, paddingRight: 15, alignSelf: "center" }}
 				/>
 			</View>
 		);
