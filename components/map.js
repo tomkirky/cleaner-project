@@ -75,9 +75,9 @@ const Map = ({ loggedUserPostCode, navigation }) => {
 				</MapView>
 				<Callout style={styles.buttonCallout}>
 					<FancyButton
-						title="Continue to jobs"
+						title="Continue to your profile"
 						onPress={() => {
-							navigation.navigate("Cleans");
+							navigation.navigate("HomeTabs");
 						}}
 					>
 						Continue to your jobs

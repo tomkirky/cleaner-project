@@ -6,6 +6,7 @@ import { View, Pressable, ScrollView } from "react-native";
 import { Button, Title, Text, Avatar } from "react-native-paper";
 import { useState, useEffect } from "react";
 import StarRating from "react-native-star-rating";
+import FancyButton from "./styling/fancyButton";
 
 const CleanersList = ({ setCleaner, navigation }) => {
 	const [currCleaner, setCurrCleaner] = useState({});
@@ -71,21 +72,38 @@ const CleanersList = ({ setCleaner, navigation }) => {
 	if (currCleaner.hasCleaner === true) {
 		return (
 			<View>
-				<Text>Your Cleaner</Text>
-				<Text>Your cleaner is {currCleaner.currentCleaner}</Text>
-				<Text>Last payment sent at {Date(currCleaner.dateOfPayment)}</Text>
-				<Text>
-					{currCleaner.currentCleaner} will clean your windows 2 days after
-					payment has cleared
-				</Text>
+				<Avatar.Image
+					size={150}
+					source={{
+						uri: currCleaner.photoURL
+					}}
+					style={{ margin: 25, alignSelf: "center" }}
+				/>
+				<Title style={{ padding: 10, alignSelf: "center" }}>
+					{" "}
+					Hello {currCleaner.name}
+				</Title>
+				<Title style={{ padding: 10, alignSelf: "center" }}>
+					Your current cleaner is {currCleaner.currentCleaner}
+				</Title>
+
+				<Card>
+					<Text>Last payment sent at {Date(currCleaner.dateOfPayment)}</Text>
+				</Card>
+				<View style={{ margin: 20, alignSelf: "center" }}>
+					<Text style={{ padding: 10, alignSelf: "center" }}>
+						{currCleaner.currentCleaner} will clean your windows 2 days after
+						payment has cleared
+					</Text>
+				</View>
 				<View>
-					<Button
+					<FancyButton
 						onPress={() => {
 							removeCleaner();
 						}}
 					>
 						Remove Cleaner
-					</Button>
+					</FancyButton>
 				</View>
 			</View>
 		);

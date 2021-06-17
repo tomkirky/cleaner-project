@@ -47,21 +47,30 @@ function getHeaderTitle(route) {
 }
 
 export const HomeTabs = ({ navigation, setCleaner, cleaner }) => {
-	console.log(cleaner, setCleaner);
-	return (
-		<Tab.Navigator barStyle={{ backgroundColor: "#2192BC" }}>
-			<Tab.Screen name="Cleaners" options={{ tabBarIcon: "pail-outline" }}>
-				{(props) => (
-					<CleanersList {...props} setCleaner={setCleaner} cleaner={cleaner} />
-				)}
-			</Tab.Screen>
-			<Tab.Screen
-				name="Chat"
-				component={ChatScreen}
-				options={{ tabBarIcon: "chat-outline" }}
-			/>
-		</Tab.Navigator>
-	);
+	console.log(auth.currentUser.uid);
+	if (auth.currentUser.uid !== "9PItny4p8CSXhAsuiVAnyvIdClE2") {
+		return (
+			<Tab.Navigator>
+				<Tab.Screen name="Cleans" component={Cleans} />
+				<Tab.Screen name="Chat" component={ChatScreen} />
+			</Tab.Navigator>
+		);
+	} else {
+		return (
+			<Tab.Navigator>
+				<Tab.Screen name="Cleaners">
+					{(props) => (
+						<CleanersList
+							{...props}
+							setCleaner={setCleaner}
+							cleaner={cleaner}
+						/>
+					)}
+				</Tab.Screen>
+				<Tab.Screen name="Chat" component={ChatScreen} />
+			</Tab.Navigator>
+		);
+	}
 };
 
 const App = ({ navigation }) => {
