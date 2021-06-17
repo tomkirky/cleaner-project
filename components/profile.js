@@ -38,8 +38,8 @@ const Profile = ({ cleaner, navigation }) => {
 				size={150}
 				source={{
 					uri:
-						cleaner.photoURL ||
-						"http://clipart-library.com/new_gallery/44-448154_cleaning-clipart-worker-window-cleaning-clip-art.png "
+						cleaner.cleanerPhotoURL ||
+						"http://clipart-library.com/new_gallery/44-448154_cleaning-clipart-worker-window-cleaning-clip-art.png ",
 				}}
 				style={{ margin: 25, alignSelf: "center" }}
 			/>
