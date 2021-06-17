@@ -86,10 +86,7 @@ const App = ({ navigation }) => {
 							component={LandingScreen}
 							options={{ headerShown: false }}
 						/>
-						<Stack.Screen
-							name="Register"
-							options={{ title: `Please enter ${userType} details` }}
-						>
+						<Stack.Screen name="Register" options={{ title: "" }}>
 							{(props) => (
 								<RegisterScreen
 									{...props}

@@ -5,7 +5,7 @@ import firebase from "firebase";
 import { useEffect } from "react";
 import { db, auth } from "../firebase";
 import axios from "axios";
-import { Text } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 import { googleMapsAPI } from "../googleMapsAPI";
 import { postcodeFormatter } from "../utils/utils";
 // import { db } from "../App";
@@ -170,52 +170,5 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 		);
 	}
 };
-
-// export class Register extends Component {
-// 	constructor(props) {
-// 		super(props);
-
-// 		this.state = {
-// 			email: "",
-// 			password: "",
-// 			name: "",
-// 		};
-
-// 		this.onSignUp = this.onSignUp.bind(this);
-// 	}
-
-//     onSignUp() {
-//         const { email, password, name} = this.state;
-// 		firebase.auth().createUserWithEmailAndPassword(email, password)
-// 		.then((result) => {
-// 			console.log(result)
-// 		})
-// 		.catch((error) => {
-// 			console.log(error)
-// 		})
-//     }
-
-// 	render() {
-// 		return (
-// 			<View>
-// 				<TextInput
-// 					placeholder="name"
-// 					onChangeText={(name) => this.setState({ name })}
-// 				/>
-// 				<TextInput
-// 					placeholder="email"
-// 					onChangeText={(email) => this.setState({ email })}
-// 				/>
-// 				<TextInput
-// 					placeholder="password"
-// 					secureTextEntry={true}
-// 					onChangeText={(password) => this.setState({ password })}
-// 				/>
-
-// 				<Button onPress={() => this.onSignUp()} title="Sign Up" />
-// 			</View>
-// 		);
-// 	}
-// }
 
 export default Register;

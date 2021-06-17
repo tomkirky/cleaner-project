@@ -20,7 +20,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 			.update({
 				hasCleaner: false,
 				currentCleaner: "",
-				dateOfPayment: "",
+				dateOfPayment: ""
 			})
 			.then(() => {
 				setCurrCleaner((currCleaner) => {
@@ -111,7 +111,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 										<Avatar.Image
 											size={150}
 											source={{
-												uri: cleaner.cleanerPhotoURL,
+												uri: cleaner.cleanerPhotoURL
 											}}
 											style={{ margin: 5, alignSelf: "center" }}
 										/>
@@ -129,7 +129,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 													paddingLeft: 20,
 													paddingRight: 20,
 
-													alignSelf: "center",
+													alignSelf: "center"
 												}}
 											/>
 										</View>
