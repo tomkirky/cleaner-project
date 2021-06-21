@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { TextInput, Title } from "react-native-paper";
 import FancyButton from "../styling/fancyButton";
 
@@ -70,12 +70,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		padding: 20,
 		marginTop: 50,
-		// backgroundColor: "#ffffff"
-	},
-	button: {
-		marginLeft: 10,
-		marginRight: 10,
-		marginTop: 15,
 	},
 	textInput: {
 		marginBottom: 5,

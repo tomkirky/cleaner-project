@@ -1,8 +1,6 @@
 import * as React from "react";
-import { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { Button } from "react-native-paper";
-import { db, auth } from "../firebase";
+import { db } from "../firebase";
 import firebase from "firebase";
 import FancyButton from "./styling/fancyButton";
 
@@ -93,7 +91,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		padding: 20,
 		marginTop: 50,
-		// backgroundColor: "#ffffff"
 	},
 });
 

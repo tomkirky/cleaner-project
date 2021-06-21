@@ -1,18 +1,11 @@
 import * as React from "react";
 import MapView from "react-native-maps";
-import { Heatmap, Callout, TouchableOpacity } from "react-native-maps";
-import {
-	StyleSheet,
-	Text,
-	View,
-	Dimensions,
-	ActivityIndicator,
-} from "react-native";
+import { Heatmap, Callout } from "react-native-maps";
+import { StyleSheet, View, Dimensions, ActivityIndicator } from "react-native";
 import axios from "axios";
 import { googleMapsAPI } from "../googleMapsAPI";
 import { useState, useEffect } from "react";
 import firebase from "firebase";
-// import { Button } from "react-native";
 import FancyButton from "./styling/fancyButton";
 
 const Map = ({ loggedUserPostCode, navigation }) => {
@@ -122,14 +115,6 @@ const styles = StyleSheet.create({
 		backgroundColor: "transparent",
 		borderWidth: 0.5,
 		borderRadius: 20,
-	},
-	touchable: {
-		backgroundColor: "lightblue",
-		padding: 10,
-		margin: 10,
-	},
-	touchableText: {
-		fontSize: 24,
 	},
 });
 

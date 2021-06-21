@@ -1,9 +1,7 @@
 import { db, auth } from "../firebase";
-import firebase from "firebase";
-import { Card } from "react-native-elements";
 import React from "react";
-import { View, Pressable, ScrollView, ActivityIndicator } from "react-native";
-import { Button, Title, Text, Avatar } from "react-native-paper";
+import { View, ActivityIndicator } from "react-native";
+import { Title, Text, Avatar } from "react-native-paper";
 import { useState, useEffect } from "react";
 import StarRating from "react-native-star-rating";
 

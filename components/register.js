@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { ClientSignupForm } from "./registrationforms/clientRegForm";
 import { CleanerSignupForm } from "./registrationforms/cleanersRegForm";
-import firebase from "firebase";
-import { useEffect } from "react";
 import { db, auth } from "../firebase";
 import axios from "axios";
-import { Text, StyleSheet, View, ActivityIndicator } from "react-native";
+import { ActivityIndicator } from "react-native";
 import { googleMapsAPI } from "../googleMapsAPI";
-import { postcodeFormatter } from "../utils/utils";
-// import { db } from "../App";
 
 const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 	const [clientRegisterDetails, setClientRegisterDetails] = useState({
@@ -135,23 +131,6 @@ const Register = ({ userType, navigation, setLoggedUserPostCode }) => {
 		}
 	};
 
-	///////////////////////////////////// vvv THIS NEEDS TO GO INTO OTHER SCREEN - CLEANER LIST???
-	// var usersRef = firebase.firestore().collection("users");
-	// var query = usersRef.where("postcode", "==", "Manchester");
-	// useEffect(() => {
-	// 	firebase
-	// 		.firestore()
-	// 		.collection("users")
-	// 		.where("postcode", "==", "Manchester")
-	// 		.get()
-	// 		.then((querySnapshot) => {
-	// 			querySnapshot.forEach((doc) => {
-	// 				// doc.data() is never undefined for query doc snapshots
-	// 				console.log(doc.id, " => ", doc.data());
-	// 			});
-	// 		});
-	// }, []);
-	////////////////////////////////////
 	if (isLoading) {
 		return (
 			<ActivityIndicator

@@ -16,7 +16,7 @@ const Login = ({ navigation }) => {
 		const { email, password } = loginDetails;
 		auth
 			.signInWithEmailAndPassword(email, password)
-			.then((result) => {
+			.then(() => {
 				navigation.navigate("HomeTabs");
 			})
 			.catch((error) => {
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		padding: 20,
 		marginTop: 50,
-		// backgroundColor: "#ffffff"
 	},
 	logo: {
 		width: 250,

@@ -1,15 +1,8 @@
 import { db, auth } from "../firebase";
-import firebase from "firebase";
 import { Card } from "react-native-elements";
 import React from "react";
 import { View, Pressable, ScrollView } from "react-native";
-import {
-	Button,
-	Title,
-	Text,
-	Avatar,
-	ActivityIndicator,
-} from "react-native-paper";
+import { Title, Text, Avatar, ActivityIndicator } from "react-native-paper";
 import { useState, useEffect } from "react";
 import StarRating from "react-native-star-rating";
 import FancyButton from "./styling/fancyButton";
@@ -132,6 +125,7 @@ const CleanersList = ({ setCleaner, navigation }) => {
 						{cleaners.map((cleaner) => {
 							return (
 								<Pressable
+									key={cleaner.companyName}
 									onPress={() => {
 										setCleaner(cleaner);
 										navigation.navigate("Profile");

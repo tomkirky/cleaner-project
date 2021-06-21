@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text } from "react-native";
+import { View, Image } from "react-native";
 import FadeInLogo from "./fadeInLogo";
 
 const LogoScreen = ({ navigation }) => {
@@ -7,7 +7,7 @@ const LogoScreen = ({ navigation }) => {
 		setTimeout(() => {
 			navigation.navigate("Login");
 		}, 9000);
-	} // HOW TO USE THIS???
+	}
 
 	return (
 		<View

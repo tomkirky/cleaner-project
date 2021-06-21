@@ -1,11 +1,6 @@
-import React, {
-	useLayoutEffect,
-	useState,
-	useEffect,
-	useCallback,
-} from "react";
+import React, { useLayoutEffect, useState, useCallback } from "react";
 import { GiftedChat } from "react-native-gifted-chat";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { auth, db } from "../firebase";
 
 const ChatScreen = () => {

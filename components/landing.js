@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
+import { View, Button } from "react-native";
 import { auth } from "../firebase";
 
 export default function Landing({ navigation }) {

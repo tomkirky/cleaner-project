@@ -1,6 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
-import { Button } from "react-native-paper";
+import { View, StyleSheet } from "react-native";
 import "react-native-gesture-handler";
 import FancyButton from "./styling/fancyButton";
 
@@ -57,8 +56,6 @@ export default UserType;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		// backgroundColor: "#fff",
-		// alignItems: "center",
 		justifyContent: "center",
 		marginTop: 50,
 	},
@@ -66,6 +63,5 @@ const styles = StyleSheet.create({
 		marginLeft: 10,
 		marginRight: 10,
 		marginBottom: 80,
-		// marginTop: 15
 	},
 });

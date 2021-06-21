@@ -1,17 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import React, { Component } from "react";
-import { View, Text } from "react-native";
-import { Button, Header } from "react-native-elements";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { CleanerContext } from "./contexts/Cleaner";
 import { auth } from "./firebase";
-
-// import * as firebase from "firebase";
-// if (firebase.apps.length === 0) {
-//   firebase.initializeApp(firebaseConfig);
-// }
-
 import LandingScreen from "./components/landing";
 import RegisterScreen from "./components/register";
 import LoginScreen from "./components/login";
@@ -24,7 +15,6 @@ import CleanersList from "./components/cleanersList";
 import Profile from "./components/profile";
 import { useState } from "react";
 import PaymentAmount from "./components/PaymentAmount";
-import Navbar from "./components/navbar";
 import Cleans from "./components/cleans";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -34,9 +24,6 @@ const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function getHeaderTitle(route) {
-	// If the focused route is not found, we need to assume it's the initial screen
-	// This can happen during if there hasn't been any navigation inside the screen
-	// In our case, it's "Feed" as that's the first screen inside the navigator
 	const routeName = getFocusedRouteNameFromRoute(route) ?? "Cleaners";
 
 	switch (routeName) {
@@ -47,7 +34,7 @@ function getHeaderTitle(route) {
 	}
 }
 
-export const HomeTabs = ({ navigation, setCleaner, cleaner }) => {
+export const HomeTabs = ({ setCleaner, cleaner }) => {
 	console.log(auth.currentUser.uid);
 	if (auth.currentUser.uid !== "9PItny4p8CSXhAsuiVAnyvIdClE2") {
 		return (
@@ -86,7 +73,7 @@ export const HomeTabs = ({ navigation, setCleaner, cleaner }) => {
 	}
 };
 
-const App = ({ navigation }) => {
+const App = () => {
 	const [userType, setUserType] = useState("");
 	const [loggedUserPostCode, setLoggedUserPostCode] = useState("");
 	const [amount, setAmount] = useState("");
@@ -198,61 +185,3 @@ const App = ({ navigation }) => {
 };
 
 export default App;
-// start here
-// export default class App extends Component {
-// 	constructor(props) {
-// 		super(props);
-// 		this.state = {
-// 			loaded: false,
-// 		};
-// 	}
-// 	componentDidMount() {
-// 		firebase.auth().onAuthStateChanged((user) => {
-// 			if (!user) {
-// 				this.setState({
-// 					loggedIn: false,
-// 					loaded: true,
-// 				});
-// 			} else {
-// 				this.setState({
-// 					loggedIn: true,
-// 					loaded: true,
-// 				});
-// 			}
-// 		});
-// 	}
-// 	render() {
-// 		const { loggedIn, loaded } = this.state;
-// 		if (!loaded) {
-// 			return (
-// 				<View>
-// 					<Text style={{ flex: 1, justifyContent: "center" }}>Loading</Text>
-// 				</View>
-// 			);
-// 		}
-// 		return (
-// 			<NavigationContainer>
-// 				<Stack.Navigator initialRouteName="Landing">
-// 					<Stack.Screen
-// 						name="Landing"
-// 						component={LandingScreen}
-// 						options={{ headerShown: false }}
-// 					/>
-// 					<Stack.Screen name="Register" component={RegisterScreen} />
-// 				</Stack.Navigator>
-// 			</NavigationContainer>
-// 		);
-// 	}
-// }
-//ends here
-
-// var citiesRef = db.collection("cities");
-
-// citiesRef.doc("SF").set({
-// 	name: "San Francisco",
-// 	state: "CA",
-// 	country: "USA",
-// 	capital: false,
-// 	population: 860000,
-// 	regions: ["west_coast", "norcal"],
-// });
